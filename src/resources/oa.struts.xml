@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+        "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+
+	<package name="oa" namespace="/oa" extends="default">
+		<default-interceptor-ref name="myStack" />
+
+		<action name="index" class="com.jitong.common.action.CategoryRedirectAction">
+		<param name="categoryId">oa</param>
+			<result type="redirectAction">
+				<param name="actionName">Welcome</param>
+				<param name="namespace">/</param>
+			</result>
+			<result type="redirect" name="redirect">${redirect}</result>
+		</action>
+
+		<action name="portalets" class="com.jitong.oa.action.PortaletsAction"	method="list">
+			<result name="success">/WEB-INF/jsp/oa/portalets.jsp</result>
+		</action>
+		
+		<action name="item" class="com.jitong.oa.action.ItemAction"	method="list">
+			<interceptor-ref name="myStackNoAuth"></interceptor-ref>
+			<result name="success">/WEB-INF/jsp/oa/itemlist.jsp</result>
+		</action>
+		<action name="iteminput" class="com.jitong.oa.action.ItemAction"  method="input">
+			<result name="success" type="redirectAction">item</result>
+			<result name="input">/WEB-INF/jsp/oa/itemform.jsp</result>
+		</action>
+		
+		
+		
+		<action name="itemdetail" class="com.jitong.oa.action.ItemDetailAction"  method="view">
+			<interceptor-ref name="myStackNoAuth"></interceptor-ref>
+			<result name="input">/WEB-INF/jsp/oa/itemdetail.jsp</result>
+			<result name="biddersreport">/WEB-INF/jsp/oa/biddersreport.jsp</result>
+			<result name="setupreport">/WEB-INF/jsp/oa/setupreport.jsp</result>
+			<result name="finishreport">/WEB-INF/jsp/oa/finishreport.jsp</result>
+		</action>
+		
+		<action name="itemdetail_leader1" class="com.jitong.oa.action.ItemDetaiLeader1Action"  method="view">
+			<result name="input">/WEB-INF/jsp/oa/itemdetail_leader1.jsp</result>
+		</action>
+		
+		<action name="download" class="com.jitong.oa.action.DownloadAction" >
+			<interceptor-ref name="myStackNoAuth"></interceptor-ref>
+			<result name="download">/WEB-INF/jsp/downloadblob.jsp</result>
+		</action>
+		
+		<action name="exportword" class="com.jitong.oa.action.ExportWordAction" >
+			<interceptor-ref name="myStackNoAuth"></interceptor-ref>
+			<result name="export">/WEB-INF/jsp/exportWord.jsp</result>
+		</action>
+	</package>
+</struts>

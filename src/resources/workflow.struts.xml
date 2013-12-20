@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+        "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+	<package name="workflow" namespace="/workflow" extends="default">
+		<default-interceptor-ref name="myStack" />
+
+		<action name="index" class="com.jitong.common.action.CategoryRedirectAction">
+		<param name="categoryId">workflow</param>
+			<result type="redirectAction">
+				<param name="actionName">Welcome</param>
+				<param name="namespace">/</param>
+			</result>
+			<result type="redirect" name="redirect">${redirect}</result>
+		</action>
+
+		<action name="mynewitems" class="com.jitong.workflow.action.MyNewItemsAction"	method="list">
+			<result name="success">/WEB-INF/jsp/workflow/mynewitems_list.jsp</result>
+		</action>
+		
+		<action name="mynewitemsinput" class="com.jitong.workflow.action.MyNewItemsAction"  method="input">
+			<result name="success" type="redirectAction">mynewitems</result>
+			<result name="input">/WEB-INF/jsp/workflow/mynewitems_form.jsp</result>
+		</action>
+		
+		<action name="itemapprove" class="com.jitong.workflow.action.ItemsApproveAction"	method="list">
+			<result name="success">/WEB-INF/jsp/workflow/itemapprove_list.jsp</result>
+		</action>
+		<action name="itemapproveinput" class="com.jitong.workflow.action.ItemsApproveAction"  method="input">
+			<result name="success" type="redirectAction">itemapprove</result>
+			<result name="input">/WEB-INF/jsp/workflow/itemapprove_form.jsp</result>
+		</action>
+		
+			
+		
+		<action name="onsurvey" class="com.jitong.workflow.action.OnSurveyAction"	method="list">
+			<result name="success">/WEB-INF/jsp/workflow/onsurvey_list.jsp</result>
+		</action>
+		<action name="onsurvey1_pendinginfo" class="com.jitong.workflow.action.OnSurvey1_PendingInfoAction"  method="input">
+			<result name="success" type="redirectAction">onsurvey</result>
+			<result name="input">/WEB-INF/jsp/workflow/onsurvey1_pendinginfo_form.jsp</result>
+		</action>
+		<action name="onsurvey2_pendingsign" class="com.jitong.workflow.action.OnSurvey2_PendingSignAction"  method="input">
+			<result name="success" type="redirectAction">onsurvey</result>
+			<result name="input">/WEB-INF/jsp/workflow/onsurvey2_pendingsign_form.jsp</result>
+		</action>
+		<action name="onsurvey3_signed" class="com.jitong.workflow.action.OnSurvey3_SignedAction"  method="input">
+			<result name="success" type="redirectAction">onsurvey</result>
+			<result name="input">/WEB-INF/jsp/workflow/onsurvey3_signed_form.jsp</result>
+		</action>
+		<action name="onsurvey4_pendingconfirm" class="com.jitong.workflow.action.OnSurvey4_PendingConfirmAction"  method="input">
+			<result name="success" type="redirectAction">onsurvey</result>
+			<result name="input">/WEB-INF/jsp/workflow/onsurvey4_pendingconfirm_form.jsp</result>
+		</action>
+		<action name="onsurvey5_confirmed" class="com.jitong.workflow.action.OnSurvey5_ConfirmedAction"  method="input">
+			<result name="success" type="redirectAction">onsurvey</result>
+			<result name="input">/WEB-INF/jsp/workflow/onsurvey5_confirmed_form.jsp</result>
+		</action>
+		<!-- 
+		<action name="itemonsurvey" class="com.jitong.workflow.action.ItemOnSurveyAction"	method="list">
+			<result name="success">/WEB-INF/jsp/workflow/itemonsurvey_list.jsp</result>
+		</action>
+		<action name="itemonsurveyinput" class="com.jitong.workflow.action.ItemOnSurveyAction"  method="input">
+			<result name="success" type="redirectAction">itemonsurvey</result>
+			<result name="input">/WEB-INF/jsp/workflow/itemonsurvey_form.jsp</result>
+		</action> -->
+		
+		<action name="itemreportapprove" class="com.jitong.workflow.action.ItemReportApproveAction"	method="list">
+			<result name="success">/WEB-INF/jsp/workflow/itemreportapprove_list.jsp</result>
+		</action>
+		<action name="itemreportapproveinput" class="com.jitong.workflow.action.ItemReportApproveAction"  method="input">
+			<result name="success" type="redirectAction">itemreportapprove</result>
+			<result name="input">/WEB-INF/jsp/workflow/itemreportapprove_form.jsp</result>
+			<result name="download">/WEB-INF/jsp/downloadblob.jsp</result>
+		</action>
+		
+		<!-- 立项 -->
+		<action name="onsetup_setup" class="com.jitong.workflow.action.OnSetup_SetupAction"	method="list">
+			<result name="success">/WEB-INF/jsp/workflow/onsetup_setup_list.jsp</result>
+		</action>		
+		<action name="onsetup_setupinput" class="com.jitong.workflow.action.OnSetup_SetupAction"	method="input">
+			<result name="success" type="redirectAction">onsetup_setup</result>
+			<result name="input">/WEB-INF/jsp/workflow/onsetup_setup_form.jsp</result>
+			<result name="download">/WEB-INF/jsp/downloadblob.jsp</result>
+		</action>
+		<action name="onsetup_approve" class="com.jitong.workflow.action.OnSetup_ApproveAction"	method="list">
+			<result name="success">/WEB-INF/jsp/workflow/onsetup_approve_list.jsp</result>
+		</action>		
+		<action name="onsetup_approveinput" class="com.jitong.workflow.action.OnSetup_ApproveAction"	method="input">
+			<result name="success" type="redirectAction">onsetup_approve</result>
+			<result name="input">/WEB-INF/jsp/workflow/onsetup_approve_form.jsp</result>
+			<result name="download">/WEB-INF/jsp/downloadblob.jsp</result>
+		</action>
+		
+		<action name="onbid" class="com.jitong.workflow.action.OnBidAction"	method="list">
+			<result name="success">/WEB-INF/jsp/workflow/onbid_list.jsp</result>
+		</action>
+		
+		<action name="onbid1_biddoc" class="com.jitong.workflow.action.OnBid1_BidDocAction"	method="input">
+			<result name="success" type="redirectAction">onbid</result>
+			<result name="input">/WEB-INF/jsp/workflow/onbid1_biddoc_form.jsp</result>
+			<result name="recommendbidderinput">/WEB-INF/jsp/workflow/onbid1_biddoc_recommendbidderform.jsp</result>
+		</action>
+		
+		<action name="onbid2_zbdeptapprove" class="com.jitong.workflow.action.OnBid2_ZBDEPTApproveAction"	method="input">
+			<result name="success" type="redirectAction">onbid</result>
+			<result name="input">/WEB-INF/jsp/workflow/onbid2_zbdeptapprove_form.jsp</result>
+			<result name="download">/WEB-INF/jsp/downloadblob.jsp</result>
+		</action>
+		<action name="onbid3" class="com.jitong.workflow.action.OnBid3Action"	method="input">
+			<result name="success" type="redirectAction">onbid</result>
+			<result name="input">/WEB-INF/jsp/workflow/onbid3_form.jsp</result>
+			<result name="download">/WEB-INF/jsp/downloadblob.jsp</result>
+		</action>
+		<action name="onbid4_jjwapprove" class="com.jitong.workflow.action.OnBid4_JJWApproveAction"	method="input">
+			<result name="success" type="redirectAction">onbid</result>
+			<result name="input">/WEB-INF/jsp/workflow/onbid4_jjwapprove_form.jsp</result>
+			<result name="download">/WEB-INF/jsp/downloadblob.jsp</result>
+		</action>
+		<action name="onbid5" class="com.jitong.workflow.action.OnBid5Action"	method="input">
+			<result name="success" type="redirectAction">onbid</result>
+			<result name="input">/WEB-INF/jsp/workflow/onbid5_form.jsp</result>
+			<result name="download">/WEB-INF/jsp/downloadblob.jsp</result>
+		</action>
+		<action name="onbid6" class="com.jitong.workflow.action.OnBid6ZBDEPTMeetingRecordAction"	method="input">
+			<result name="success" type="redirectAction">onbid</result>
+			<result name="input">/WEB-INF/jsp/workflow/onbid6_form.jsp</result>
+			<result name="recommendbidderinput">/WEB-INF/jsp/workflow/onbid6_recommendbidder_form.jsp</result>
+			<result name="bidmeetingrecordinput">/WEB-INF/jsp/workflow/onbid6_bidmeetingrecord_form.jsp</result>
+		</action>
+		
+		
+		<action name="itemaccept" class="com.jitong.workflow.action.ItemAcceptAction"	method="list">
+			<result name="success">/WEB-INF/jsp/workflow/item_accept_list.jsp</result>
+		</action>
+		<action name="itemacceptinput" class="com.jitong.workflow.action.ItemAcceptAction"  method="input">
+			<result name="success" type="redirectAction">itemaccept</result>
+			<result name="input">/WEB-INF/jsp/workflow/item_accept_form.jsp</result>
+			<result name="download">/WEB-INF/jsp/downloadblob.jsp</result>
+		</action>
+		
+		<!-- 结项 -->
+		<action name="onfinish" class="com.jitong.workflow.action.OnFinishAction"	method="list">
+			<result name="success">/WEB-INF/jsp/workflow/onfinish_list.jsp</result>
+		</action>
+		<action name="onfinish1" class="com.jitong.workflow.action.OnFinish1_FinishTableAction"	method="input">
+			<result name="success" type="redirectAction">onfinish</result>
+			<result name="input">/WEB-INF/jsp/workflow/onfinish1_finishtable_form.jsp</result>
+		</action>
+		<action name="onfinish2" class="com.jitong.workflow.action.OnFinish2_LeadApproveAction"	method="input">
+			<result name="success" type="redirectAction">onfinish</result>
+			<result name="input">/WEB-INF/jsp/workflow/onfinish2_leadapprove_form.jsp</result>
+		</action>
+		<action name="onfinish3" class="com.jitong.workflow.action.OnFinish3Action"	method="input">
+			<result name="success" type="redirectAction">onfinish</result>
+			<result name="input">/WEB-INF/jsp/workflow/onfinish3_form.jsp</result>
+		</action>
+		<action name="onfinish4" class="com.jitong.workflow.action.OnFinish4_JJWApproveAction"	method="input">
+			<result name="success" type="redirectAction">onfinish</result>
+			<result name="input">/WEB-INF/jsp/workflow/onfinish4_jjwapprove_form.jsp</result>
+		</action>
+		
+		
+		<action name="itempay" class="com.jitong.workflow.action.ItemPayAction"	method="list">
+			<result name="success">/WEB-INF/jsp/workflow/item_pay_list.jsp</result>
+		</action>
+		<action name="itempayview" class="com.jitong.workflow.action.ItemPayAction"	method="list">
+			<result name="success">/WEB-INF/jsp/workflow/item_pay_viewlist.jsp</result>
+		</action>
+		
+		<action name="itempayinput" class="com.jitong.workflow.action.ItemPayAction"  method="input">
+			<result name="success" type="redirectAction">itempay</result>
+			<result name="input">/WEB-INF/jsp/workflow/item_pay_form.jsp</result>
+			<result name="download">/WEB-INF/jsp/downloadblob.jsp</result>
+		</action>
+		
+		<action name="itemfinished" class="com.jitong.workflow.action.ItemFinishedAction"	method="list">
+			<result name="success">/WEB-INF/jsp/workflow/item_finished_list.jsp</result>
+		</action>
+		<action name="itemfinishedinput" class="com.jitong.workflow.action.ItemFinishedAction"  method="input">
+			<result name="success" type="redirectAction">itemfinished</result>
+			<result name="input">/WEB-INF/jsp/workflow/item_finished_form.jsp</result>
+			<result name="download">/WEB-INF/jsp/downloadblob.jsp</result>
+		</action>
+	</package>
+</struts>

@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC   "-//Hibernate/Hibernate Mapping DTD 3.0//EN"    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.jitong.workflow.domain">
+	<class name="com.jitong.workflow.domain.ItemApprove" table="OA_ITEM_APPROVE"> 
+		<id name="id" type="string" unsaved-value="null">
+			<column name="id" sql-type="varchar(32)" />
+			<generator class="uuid.hex" />
+		</id>
+		<!-- <many-to-one name="item" class="com.jitong.oa.domain.Item" fetch="select" lazy="false">
+            <column name="item_id" not-null="true" />
+        </many-to-one> -->
+		<property name="itemId" column="item_id" />
+		<property name="approverId" column="approver_Id" />
+		<property name="approverName" column="approver_Name" />
+		<property name="status" column="status" />
+		<property name="operationTime" column="operation_Time"/>
+		<property name="type" column="type" />
+		<property name="comments" column="comments" />
+	</class>
+	
+	<class name="com.jitong.workflow.domain.ItemBid" table="OA_ITEM_BID"> 
+		<id name="itemId" type="string" unsaved-value="null">
+			<column name="item_id" sql-type="varchar(32)" />
+			<!-- <generator class="uuid.hex" /> -->
+		</id>
+				  
+		<property name="bidItemName" column="BID_ITEM_NAME" />
+		<property name="applyDate" column="APPLY_DATE" />
+		<property name="planAmount" column="PLAN_AMOUNT" />
+		<property name="refNumber" column="REF_NUMBER" />
+		<property name="moneySource" column="MONEY_SOURCE"/>
+		<property name="itemSummary" column="ITEM_SUMMARY" />
+		<property name="planBidDate" column="PLAN_BID_DATE" />
+		<property name="agentPersonPhone" column="agent_person_PHONE" />
+		<property name="bidNegotiation" column="bid_negotiation" type="blob" lazy="true"/>
+		<property name="bidNegotiationExt" column="bid_negotiation_ext"/>
+		
+		<property name="hostDept" column="HOST_DEPT" />
+		<property name="hostDeptComments" column="HOST_DEPT_COMMENTS" />
+		<property name="responsiblePerson" column="Responsible_person" />
+		<property name="approveStatus" column="approve_status" />
+		<property name="approverId" column="approver_id" />
+		<property name="approveRejectDate" column="approve_reject_date" />
+		<property name="bidDate" column="bid_date" />
+		<property name="bidType" column="bid_type" />
+		<property name="bidDoc" column="bid_doc" type="blob" lazy="true"/>
+		<property name="bidDocExt" column="bid_doc_ext"/>
+		
+		<property name="zhaobiaoDeptAgentPerson" column="zb_dept_agent_person" />
+		<property name="zhaobiaoDeptComments" column="zb_dept_comments" />
+		<property name="zhaobiaoDeptCommentsHistory" column="zb_dept_comments_history" />
+		<property name="zhaobiaoDeptResponsiblePerson" column="zb_dept_responsible_persons" />
+		
+		<property name="jjwDeptApproverId" column="jjw_dept_approver_id" />
+		<property name="jjwDeptComments" column="jjw_dept_comments" />
+		<property name="jjwDeptCommentsHistory" column="jjw_dept_comments_history" />
+		<property name="jjwDeptResponsiblePerson" column="jjw_dept_responsible_person" />
+		
+		<property name="zbdeptMeetingRecorderId" column="zbdept_Meeting_Recorder_Id" />
+		<property name="zbdeptMeetingRecorderName" column="zbdept_Meeting_Recorder_Name" />
+		
+		<property name="bidWinInfo" column="bid_win_info" type="blob" lazy="true"/>
+		<property name="bidWinInfoExt" column="bid_win_info_ext"/>
+		<property name="contract" column="contract" type="blob" lazy="true"/>
+		<property name="contractExt" column="contract_ext"/>
+		
+		<property name="itemAcceptInfo" column="item_accept_info" type="blob" lazy="true"/>
+		<property name="itemAcceptInfoExt" column="item_accept_info_ext"/>
+		<property name="payCompany" column="pay_company"/>
+		<property name="payDate" column="pay_date"/>
+		<property name="payAmount" column="pay_amount"/>
+	</class>
+	
+	<class name="com.jitong.workflow.domain.RecommendBidder" table="OA_Recommend_Bidder"> 
+		<id name="id" type="string" unsaved-value="null">
+			<column name="id" sql-type="varchar(32)" />
+			<generator class="uuid.hex" />
+		</id>
+		<property name="itemId" column="item_id" />
+		<property name="name" column="name" />
+		<property name="doc" column="doc"  type="blob" lazy="true"/>
+		<property name="docExt" column="doc_ext"/>
+		<property name="biaoshubianhao" column="biaoshubianhao"/>
+		<property name="qiyezizhi" column="qiyezizhi"/>
+		<property name="yingyezhizhao" column="yingyezhizhao"/>
+		<property name="farendaibiaoName" column="farendaibiaoName"/>
+		<property name="weituorenName" column="weituorenName"/>
+		<property name="weituorenId" column="weituorenId"/>
+		<property name="baojia1" column="baojia1"/>
+		<property name="baojia2" column="baojia2"/>
+		<property name="baojia3" column="baojia3"/> 
+		<property name="score" column="score"/> 
+	</class>
+	
+	<class name="com.jitong.workflow.domain.BidMeetingRecord" table="OA_Bid_Meeting_Record"> 
+		<id name="id" type="string" unsaved-value="null">
+			<column name="id" sql-type="varchar(32)" />
+			<generator class="uuid.hex" />
+		</id>
+		<property name="itemId" column="item_id" />
+		<property name="title" column="title" />
+		<property name="meetingNote" column="meeting_Note"  type="blob" lazy="true"/>
+		<property name="meetingNoteExt" column="meeting_Note_Ext"/>
+		<property name="date" column="meeting_date"/>
+		<property name="place" column="place"/>
+		<property name="bidType" column="bid_Type"/>
+		<property name="host" column="host"/>
+		<property name="judge" column="judge"/>
+		<property name="jjwJudge" column="jjw_Judge"/>
+		<property name="judgeSummary" column="judge_Summary" type="blob" lazy="true"/>
+		<property name="judgeSummaryExt" column="judge_Summary_Ext"/>
+		<property name="bidBase" column="bid_Base"/>
+		<property name="judgeChengnuoshu" column="judge_Chengnuoshu" type="blob" lazy="true"/> 
+		<property name="judgeChengnuoshuExt" column="judge_Chengnuoshu_Ext"/> 
+		<property name="winner" column="winner"/> 
+		<property name="winAmount" column="win_Amount"/> 
+		<!-- <property name="bidderId" column="bidder_Id"/> 
+		<property name="bidderName" column="bidder_Name"/> 
+		<property name="bidderBiaoshuNo" column="bidder_Biaoshu_No"/> 
+		<property name="bidderFarendaibiaoName" column="bidder_Farendaibiao_Name"/> 
+		<property name="bidderWeituorenName" column="bidder_Weituoren_Name"/> 
+		<property name="bidderWeituorenId" column="bidder_Weituoren_Id"/> 
+		<property name="bidderBaojia" column="bidder_Baojia"/> 
+		<property name="bidTimes" column="bid_Times"/> 
+		<property name="isWin" column="is_Win"/>  -->
+	</class>
+	
+	<class name="com.jitong.workflow.domain.ItemAccept" table="OA_Item_Accept"> 
+		<id name="id" type="string" unsaved-value="null">
+			<column name="id" sql-type="varchar(32)" />
+			<generator class="uuid.hex" />
+		</id>
+		<property name="itemId" column="item_id" />
+		<property name="acceptInfo" column="accept_Info" type="blob" lazy="true"/>
+		<property name="acceptInfoExt" column="accept_Info_Ext"  />
+		<property name="acceptDate" column="accept_Date"/>
+	</class>
+	<class name="com.jitong.workflow.domain.ItemPayment" table="OA_Item_Payment"> 
+		<id name="id" type="string" unsaved-value="null">
+			<column name="id" sql-type="varchar(32)" />
+			<generator class="uuid.hex" />
+		</id>
+		<property name="itemId" column="item_id" />
+		<property name="payCompany" column="pay_Company"/>
+		<property name="payDate" column="pay_Date"/>
+		<property name="payAmount" column="pay_Amount"/>
+	</class>
+</hibernate-mapping>

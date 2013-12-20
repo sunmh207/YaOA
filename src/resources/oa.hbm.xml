@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC   "-//Hibernate/Hibernate Mapping DTD 3.0//EN"    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.jitong.oa.domain">
+	<class name="com.jitong.oa.domain.Item" table="OA_ITEM">
+		<id name="id" type="string" unsaved-value="null">
+			<column name="item_id" sql-type="varchar(32)" />
+			<generator class="uuid.hex" />
+		</id>
+		<property name="itemName" column="item_name" />
+		<property name="itemType" column="item_type" />
+		<property name="applyDate" column="apply_date" />
+		<property name="description" column="description_clob" type="text" />
+		<property name="requesterId" column="requester_Id" />
+		<property name="requesterName" column="requester_Name" />
+		<property name="status" column="status" />
+		
+		<property name="surveyInfoTitle" column="survey_info_title" />
+		<property name="surveyInfoDate" column="survey_info_date" />
+		<!-- <property name="surveyInfoReceiverIds" column="survey_info_receiver_ids" />
+		<property name="surveyInfoReceiverNames" column="survey_info_receiver_names" /> -->
+		<property name="surveyInfoBody" column="suvery_info_body" type="text" />
+		
+		<property name="surveyReportDate" column="survey_rpt_date" />
+		<property name="surveyReportSummary" column="survey_rpt_summary" />
+		<property name="surveyReportBody" column="survey_rpt_body" type="blob" lazy="true" />
+		<property name="surveyReportBodyExt" column="survey_rpt_body_ext" />
+		<property name="surveyReportReporterId" column="survey_rpt_reporter_id" />
+		<property name="surveyReportReporterName" column="survey_rpt_reporter_name" />
+		
+		<!-- <one-to-one name="bid" />   -->
+		<property name="finishItemName" column="finish_Item_Name" />
+		<property name="investAmount" column="invest_Amount" />
+		<property name="biaodiAmount" column="biaodi_Amount" />
+		<property name="zhongbiaoPrice" column="zhongbiao_Price" />
+		<property name="zhongbiaoCompany" column="zhongbiao_Company" />
+		<property name="jingbiaoDate" column="jingbiao_Date" />
+		<property name="bidParticipants" column="bid_Participants" />
+		<property name="finishDate" column="finish_Date" />
+		<property name="contractSignDate" column="contract_Sign_Date" />
+		<property name="sponsorDeptRespPers" column="sponsor_Dept_Resp_Pers" />
+		<property name="jingbanPers" column="jingban_Pers" />
+		<property name="finishSummary" column="finish_Summary" />
+		<property name="leadComments" column="lead_Comments" />
+		<property name="jjwComments" column="jjw_Comments" />
+		<property name="finishNote" column="finish_Note" />
+	</class>
+
+	<class name="com.jitong.oa.domain.ItemOperator" table="OA_ITEM_OPERATOR">
+		<id name="id" type="string" unsaved-value="null">
+			<column name="id" sql-type="varchar(32)" />
+			<generator class="uuid.hex" />
+		</id>
+		<property name="itemId" column="item_Id" />
+		<property name="itemStatus" column="item_Status" />
+		<property name="type" column="type" />
+		<property name="operatorId" column="operator_Id" />
+		<property name="operatorName" column="operator_Name" />
+		<property name="operatorDept" column="operatorDept" />
+		<property name="isDone" column="is_Done" />
+		<property name="doneTime" column="done_Time" />
+		<property name="approval" column="approval" />
+		<property name="approvalMsg" column="approval_Msg" />
+		<property name="createTime" column="create_time" />
+	</class>
+</hibernate-mapping>

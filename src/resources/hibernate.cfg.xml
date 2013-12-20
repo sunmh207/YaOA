@@ -1,0 +1,17 @@
+<!DOCTYPE hibernate-configuration PUBLIC
+        "-//Hibernate/Hibernate Configuration DTD//EN" 
+        "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+    <session-factory>
+        <property name="show_sql">true</property>
+        <property name="connection.driver_class">oracle.jdbc.driver.OracleDriver</property>
+        <property name="connection.url">jdbc:oracle:thin:@localhost:1521:xe</property>
+        <property name="connection.username">xxxx</property>
+        <property name="connection.password">xxxx</property>
+		<property name="hibernate.hbm2ddl.auto">validate</property> 
+	 	
+        <mapping resource="console.hbm.xml"/>
+        <mapping resource="oa.hbm.xml"/>
+        <mapping resource="workflow.hbm.xml"/>
+    </session-factory>
+</hibernate-configuration>

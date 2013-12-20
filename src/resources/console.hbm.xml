@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC   "-//Hibernate/Hibernate Mapping DTD 3.0//EN"    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.jitong.console.domain">
+	<class name="com.jitong.console.domain.User" table="YA_USER">
+		<id name="id" type="string" unsaved-value="null">
+			<column name="user_id" sql-type="varchar(32)" />
+			<generator class="uuid.hex" />
+		</id>
+		<property name="name" column="name" />
+		<property name="loginName" column="login_name" />
+		<property name="password" column="password" />
+		<property name="isAdmin" column="isAdmin" />
+		<property name="phoneNumber" column="phone_number" />
+		<!--<property name="unitDept" column="unit_dept" />-->
+		<property name="unit" column="unit" />
+		<property name="dept" column="dept" />
+		<property name="GH" column="GH" />
+		<property name="gender" column="gender" />
+		<property name="birthday" column="birthday" />
+		<property name="creatorId" column="creator_id" />
+		<property name="gongzhong" column="gongzhong" />
+		<property name="gangwei" column="gangwei" />
+		<property name="zhiwu" column="zhiwu" />
+		<property name="jianzhi" column="jianzhi" />
+		<property name="evaRatio" column="eva_ratio" />
+		<property name="amountPerScore" column="AMOUNT_PER_SCORE" />
+		<!-- <property name="returnableAmount" column="RETURNABLE_AMOUNT" /> -->
+	</class>
+	<class name="com.jitong.console.domain.Role" table="OA_ROLE">
+		<id name="roleId" type="string" unsaved-value="null">
+			<column name="role_id" sql-type="varchar(32)" />
+			<generator class="uuid.hex" />
+		</id>
+		<property name="roleName" column="role_name" />
+		<property name="createTime" column="create_time" />
+		<property name="creatorId" column="creator_id" />
+		<property name="creatorName" column="creator_name" />
+	</class>
+	<class name="com.jitong.console.domain.UserRole" table="OA_USER_ROLE_R">
+		<id name="userRoleId" type="string" unsaved-value="null">
+			<column name="user_role_id" sql-type="varchar(32)" />
+			<generator class="uuid.hex" />
+		</id>
+		<property name="userId" column="user_id" />
+		<property name="roleId" column="role_id" />
+	</class>
+
+	<class name="com.jitong.console.domain.RoleMenu" table="OA_ROLE_MENU_R">
+		<id name="roleMenuId" type="string" unsaved-value="null">
+			<column name="role_menu_id" sql-type="varchar(32)" />
+			<generator class="uuid.hex" />
+		</id>
+		<property name="roleId" column="role_id" />
+		<property name="menuId" column="menu_id" />
+	</class>
+	<class name="com.jitong.console.domain.Menu" table="OA_MENU">
+		<id name="menuId" type="string" unsaved-value="null">
+			<column name="menu_id" sql-type="varchar(32)" />
+			<generator class="uuid.hex" />
+		</id>
+		<property name="moduleId" column="module_id" />
+		<property name="name" column="menu_name" />
+		<property name="desc" column="menu_desc" />
+		<property name="url" column="url" />
+		<property name="order" column="menu_order" />
+	</class>
+
+	<class name="com.jitong.console.domain.RolePerson" table="OA_ROLE_PERSON_R">
+		<id name="rolePersonId" type="string" unsaved-value="null">
+			<column name="role_person_id" sql-type="varchar(32)" />
+			<generator class="uuid.hex" />
+		</id>
+		<property name="roleId" column="role_id" />
+		<property name="personId" column="person_id" />
+	</class>
+
+	<class name="com.jitong.console.domain.Feedback" table="OA_FEEDBACK">
+		<id name="id" type="string" unsaved-value="null">
+			<column name="feedback_id" sql-type="varchar(32)" />
+			<generator class="uuid.hex" />
+		</id>
+		<property name="time" column="feedback_time" />
+		<property name="respondentId" column="respondent_id" />
+		<property name="phoneNumber" column="phone_number" />
+		<property name="email" column="email" />
+		<property name="title" column="title" />
+		<property name="desc" column="description" />
+		<property name="isFixed" column="is_fixed" />
+		<property name="solution" column="solution" />
+		<property name="operatorId" column="operator_id" />
+		<property name="sev" column="SEV" />
+	</class>
+	<class name="com.jitong.console.domain.CheJian" table="YA_CHEJIAN">
+		<id name="id" type="string" unsaved-value="null">
+			<column name="id" sql-type="varchar(32)" />
+			<generator class="uuid.hex" />
+		</id>
+		<property name="name" column="name" />
+	</class>
+	
+</hibernate-mapping>

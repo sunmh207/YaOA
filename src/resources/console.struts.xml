@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+        "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+
+	<package name="console" namespace="/console" extends="default">
+		<default-interceptor-ref name="myStack" />
+		<!--
+			<action name="index"> <result type="redirectAction"> <param
+			name="actionName">user</param> <param
+			name="namespace">/console</param> </result> </action>
+		-->
+
+		<action name="index" class="com.jitong.common.action.CategoryRedirectAction">
+		<param name="categoryId">console</param>
+			<result type="redirectAction">
+				<param name="actionName">Welcome</param>
+				<param name="namespace">/</param>
+			</result>
+			<result type="redirect" name="redirect">${redirect}</result>
+		</action>
+
+		
+		<action name="user" class="com.jitong.console.action.UserAction"
+			method="list">
+			<result name="success">/WEB-INF/jsp/console/userlist.jsp</result>
+		</action>
+
+		<action name="userinput" class="com.jitong.console.action.UserAction"
+			method="input">
+			<result name="success" type="redirectAction">user</result>
+			<result name="input">/WEB-INF/jsp/console/userform.jsp</result>
+		</action>
+
+		<action name="changepassword" class="com.jitong.console.action.ChangePasswordAction" method="input">
+			<result name="success" type="redirectAction">user</result>
+			<result name="input">/WEB-INF/jsp/console/changepasswordform.jsp</result>
+		</action>
+
+		<action name="popUserQuery" class="com.jitong.console.action.PopUserQueryAction"
+			method="list">
+			<result name="success">/WEB-INF/jsp/console/popUserQuery.jsp</result>
+		</action>
+
+		<action name="role" class="com.jitong.console.action.RoleAction"
+			method="list">
+			<result name="success">/WEB-INF/jsp/console/rolelist.jsp</result>
+		</action>
+
+		<action name="roleinput" class="com.jitong.console.action.RoleAction"
+			method="input">
+			<result name="success" type="redirectAction">role</result>
+			<result name="input">/WEB-INF/jsp/console/roleform.jsp</result>
+		</action>
+
+		<action name="userrole" class="com.jitong.console.action.UserRoleAction"
+			method="input">
+			<result name="success" type="redirectAction">role</result>
+			<result name="input">/WEB-INF/jsp/console/userByRole.jsp</result>
+		</action>
+
+		<action name="rolemenu" class="com.jitong.console.action.RoleMenuAction"
+			method="input">
+			<result name="success" type="redirectAction">role</result>
+			<result name="input">/WEB-INF/jsp/console/menuByRole.jsp</result>
+		</action>
+
+
+		<action name="roleperson" class="com.jitong.console.action.RolePersonAction"
+			method="input">
+			<result name="success" type="redirectAction">role</result>
+			<result name="input">/WEB-INF/jsp/console/personByRole.jsp</result>
+		</action>
+
+		<action name="statistic" class="com.jitong.console.action.StatisticAction"	method="list">
+			<result name="success">/WEB-INF/jsp/console/statistic.jsp</result>
+		</action>
+		<action name="feedback" class="com.jitong.console.action.FeedbackAction"	method="list">
+			<result name="success">/WEB-INF/jsp/console/feedbacklist.jsp</result>
+			<result name="input">/WEB-INF/jsp/console/feedbackinput.jsp</result>
+			<result name="edit">/WEB-INF/jsp/console/feedbackedit.jsp</result>
+		</action>
+	</package>
+</struts>
