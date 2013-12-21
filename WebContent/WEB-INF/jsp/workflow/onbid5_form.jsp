@@ -74,6 +74,12 @@ function forSubmit() {
 			<s:property value="%{bid.agentPersonPhone}"/> 	 
         </td>
     </tr>
+    <tr>
+        <td height="24" align="right" class="td_lable">主办部门负责人</td>
+        <td class="td_edit" colspan="3">		
+			<s:property  value="%{bid.responsiblePerson}" /> 	 
+        </td>
+    </tr>
      <tr>
         <td height="24" align="right" class="td_lable">推荐投标单位</td>
         <td class="td_edit" colspan="3">	
@@ -95,20 +101,24 @@ function forSubmit() {
         <a href="${root}/oa/download!downloadBidDoc.do?item.id=${item.id}">下载招标文件</a>	
         </td>
     </tr>
-    <tr>
+     <tr>
         <td height="24" align="right" class="td_lable">竞标时间</td>
-        <td class="td_edit" colspan="3">		
-			<s:property  value="%{bid.bidDate}" /> 	 
+        <td class="td_edit">		
+			<s:property value="%{bid.bidDate}"  /> 	 
+        </td>
+        <td height="24" align="right" class="td_lable">招竞标形式</td>
+        <td class="td_edit">		
+			<s:property   value="%{bid.bidType}" /> 	 
         </td>
     </tr>
     <tr>
-        <td height="24" align="right" class="td_lable">招竞标形式</td>
-        <td class="td_edit">		
-			<s:property value="%{bid.bidType}" /> 	 
-        </td>
         <td height="24" align="right" class="td_lable">经办人</td>
         <td class="td_edit">		
 			<s:property  value="%{bid.zhaobiaoDeptAgentPerson}"/> 	 
+        </td>
+         <td height="24" align="right" class="td_lable">招标管理部门负责人</td>
+        <td class="td_edit">		
+			<s:property   value="%{bid.zhaobiaoDeptResponsiblePerson}" /> 	 
         </td>
     </tr>
     <tr>

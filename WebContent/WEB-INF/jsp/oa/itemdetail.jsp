@@ -54,6 +54,9 @@
         </s:iterator>
         </td>
     </tr>
+ </table>  
+     <br>
+ <table  width="99%" class="table" cellpadding="0" cellspacing="0" align="center">  
     <tr>
         <td colspan="4" class="td_header">调研</td>
     </tr>
@@ -104,10 +107,14 @@
         </s:iterator>
         </td>
     </tr>
+</table>
+<br>
+<table width="99%" class="table" cellpadding="0" cellspacing="0" align="center">    
     <tr>
-        <td colspan="4" class="td_header">招标</td>
+        <td colspan="5" class="td_header">招标</td>
     </tr>
      <tr>
+     <td height="24" rowspan="8" class="td_lable">主办部门填写</td>
         <td height="24" align="right" class="td_lable">主办部门</td>
         <td class="td_edit">		
 			<s:property  value="%{bid.hostDept}"/> 	 
@@ -155,6 +162,12 @@
         </td>
     </tr>
      <tr>
+        <td height="24" align="right" class="td_lable">主办部门负责人</td>
+        <td class="td_edit" colspan="3">		
+			<s:property value="%{bid.responsiblePerson}"  /> 	 
+        </td>
+    </tr>
+     <tr>
         <td height="24" align="right" class="td_lable">推荐投标单位</td>
         <td class="td_edit" colspan="3">	
         	<s:iterator value="recommendBidderList" status="st">
@@ -169,6 +182,7 @@
         </td>
     </tr>
     <tr>
+    	<td height="24" rowspan="7" class="td_lable">招标管理部门填写</td>
     	<td height="24" align="right" class="td_lable">主管部门审批流程</td>
         <td colspan="3" class="td_edit">
         <s:iterator value="setupApproveList" status="st">
@@ -180,19 +194,23 @@
         </td>
     </tr> 
     <tr>
-        <td height="24" align="right" class="td_lable">竞标时间</td>
-        <td class="td_edit" colspan="3">		
-			<s:property  value="%{bid.bidDate}"  /> 	 
+         <td height="24" align="right" class="td_lable">竞标时间</td>
+        <td class="td_edit">		
+			<s:property value="%{bid.bidDate}"  /> 	 
         </td>
-    </tr>
-    <tr>
         <td height="24" align="right" class="td_lable">招竞标形式</td>
         <td class="td_edit">		
 			<s:property   value="%{bid.bidType}" /> 	 
         </td>
+    </tr>
+    <tr>
         <td height="24" align="right" class="td_lable">经办人</td>
         <td class="td_edit">		
 			<s:property  value="%{bid.zhaobiaoDeptAgentPerson}"/> 	 
+        </td>
+         <td height="24" align="right" class="td_lable">招标管理部门负责人</td>
+        <td class="td_edit">		
+			<s:property   value="%{bid.zhaobiaoDeptResponsiblePerson}" /> 	 
         </td>
     </tr>
     <tr>
@@ -226,6 +244,7 @@
         </td>
     </tr>
      <tr>
+        <td height="24" rowspan="3" class="td_lable">纪检监察机关填写</td>
     	<td height="24" align="right" class="td_lable">纪检监察机关审批流程</td>
         <td colspan="3" class="td_edit">
         <s:iterator value="jjwApproveList" status="st">
@@ -248,6 +267,9 @@
 			<s:property value="%{bid.jjwDeptResponsiblePerson}"  /> 	 
         </td>
     </tr>
+ </table>
+ <br>
+ <table  width="99%" class="table" cellpadding="0" cellspacing="0" align="center">   
     <tr>
         <td height="24" align="right" class="td_lable">招标部门会议记录上传人员</td>
         <td class="td_edit" colspan="3">		
@@ -305,19 +327,93 @@
     <tr>
         <td height="24" align="right" class="td_lable">结项</td>
         <td colspan="3" class="td_edit">
-        <strong>主管领导审批流程</strong><br>
-        <s:iterator value="onfinishLeadApproveList" status="st">
-				[<s:property value="operationTime"/>] 
-				审批人:<s:property  value="approverName"/> &nbsp;&nbsp;
-				审批结果:<s:property  value="statusTXT"/>&nbsp;&nbsp; 
-				意见:<s:property  value="comments"/> <br>
-        </s:iterator>
-         <strong>纪检委审批流程</strong><br>
-        <s:iterator value="onfinishJJWApproveList" status="st">
-				[<s:property value="operationTime"/>] 
-				审批人:<s:property  value="approverName"/> &nbsp;&nbsp;
-				审批结果:<s:property  value="statusTXT"/>&nbsp;&nbsp; 
-				意见:<s:property  value="comments"/> <br>
+        <s:iterator value="itemFinishtList" status="st">
+        <table width="100%" class="table" cellpadding="0" cellspacing="0" align="center">
+		    <tr>
+		        <td height="24" align="right" class="td_lable">结项名称</td>
+		        <td class="td_edit" colspan="3">		
+					<s:property value="%{finishItemName}"/> 	 
+		        </td>
+		        <td height="24" align="right" class="td_lable">状态</td>
+		        <td class="td_edit">		
+					<s:property  value="%{statusTXT}" /> 	 
+		        </td>
+		    </tr>
+		    <tr>
+		    	<td height="24" align="right" class="td_lable">投资金额</td>
+		        <td class="td_edit">		
+					<s:property  value="%{investAmount}" /> 	 
+		        </td>
+		        <td height="24" align="right" class="td_lable">标   底</td>
+		        <td class="td_edit">		
+					<s:property value="%{biaodiAmount}"/> 	 
+		        </td>
+		        <td height="24" align="right" class="td_lable">中 标 价</td>
+		        <td class="td_edit">		
+					<s:property  value="%{zhongbiaoPrice}" /> 	 
+		        </td>
+		       
+		    </tr> 
+		    <tr>
+		        <td height="24" align="right" class="td_lable">中标单位</td>
+		        <td class="td_edit">		
+					<s:property  value="%{zhongbiaoCompany}"/> 	 
+		        </td>
+		        <td height="24" align="right" class="td_lable">招竞标时间</td>
+		        <td class="td_edit">		
+					<s:property value="%{jingbiaoDate}" /> 	 
+		        </td>
+		        <td height="24" align="right" class="td_lable">参加招 标人员</td>
+		        <td class="td_edit" >		
+					<s:property  value="%{bidParticipants}" />
+		        </td>
+		    </tr>
+		    <tr>
+		        <td height="24" align="right" class="td_lable">完成工期或购销时间</td>
+		        <td class="td_edit">		
+					<s:property value="%{finishDate}" /> 	 
+		        </td>
+		        <td height="24" align="right" class="td_lable">合同签订时间</td>
+		        <td class="td_edit">		
+					<s:property   value="%{contractSignDate}"  /> 	 
+		        </td>
+		         <td height="24" align="right" class="td_lable">主办部门负责人</td>
+		        <td class="td_edit">		
+					<s:property  value="%{sponsorDeptRespPers}"/> 	 
+		        </td>
+		    </tr> 
+		    <tr>
+		        <td height="24" align="right" class="td_lable">经办人</td>
+		        <td class="td_edit" colspan="5">		
+					<s:property value="%{jingbanPers}" /> 	 
+		        </td>
+		    </tr>
+		    <tr>
+		        <td height="24" align="right" class="td_lable">结项主要内容</td>
+		        <td class="td_edit" colspan="5">		
+					<s:property value="%{finishSummary}" />
+		        </td>
+		    </tr>
+		    <tr>
+		        <td height="24" align="right" class="td_lable">主管领导审批意见</td>
+		        <td class="td_edit" colspan="5">		
+					<s:property value="%{leadComments}" />
+		        </td>
+		    </tr>
+		    <tr>
+		        <td height="24" align="right" class="td_lable">纪检监察机关意见</td>
+		        <td class="td_edit" colspan="5">		
+					<s:property value="%{jjwComments}" />
+		        </td>
+		    </tr>
+		    <tr>
+		        <td height="24" align="right" class="td_lable">备注</td>
+		        <td class="td_edit" colspan="5">		
+					<s:property  value="%{finishNote}" />
+		        </td>
+		    </tr> 
+		</table>
+		<br>
         </s:iterator>
         </td>
     </tr>

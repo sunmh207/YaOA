@@ -22,74 +22,75 @@ function forsubmit() {
 <s:actionmessage />
 <s:form id="itemForm" action="onfinish1!submit.do" method="post"  enctype="multipart/form-data">
 <s:hidden name="item.id" value="%{item.id}" />
+<s:hidden name="itemFinish.id" value="%{itemFinish.id}" />
 <table width="100%" class="table" cellpadding="0" cellspacing="0" align="center">
     
     <tr>
         <td height="24" align="right" class="td_lable">结项名称</td>
         <td class="td_edit">		
-			<s:textfield  name="item.finishItemName" value="%{item.finishItemName}"/> 	 
+			<s:textfield  name="itemFinish.finishItemName" value="%{itemFinish.finishItemName}"/> 	 
         </td>
         <td height="24" align="right" class="td_lable">投资金额</td>
         <td class="td_edit">		
-			<s:textfield  name="item.investAmount" value="%{item.investAmount}" /> 	 
+			<s:textfield  name="itemFinish.investAmount" value="%{itemFinish.investAmount}" /> 	 
         </td>
     </tr>
     <tr>
         <td height="24" align="right" class="td_lable">标   底</td>
         <td class="td_edit">		
-			<s:textfield  name="item.biaodiAmount" value="%{item.biaodiAmount}"/> 	 
+			<s:textfield  name="itemFinish.biaodiAmount" value="%{itemFinish.biaodiAmount}"/> 	 
         </td>
         <td height="24" align="right" class="td_lable">中 标 价</td>
         <td class="td_edit">		
-			<s:textfield  name="item.zhongbiaoPrice" value="%{item.zhongbiaoPrice}" /> 	 
+			<s:textfield  name="itemFinish.zhongbiaoPrice" value="%{itemFinish.zhongbiaoPrice}" /> 	 
         </td>
     </tr>
     <tr>
         <td height="24" align="right" class="td_lable">中标单位</td>
         <td class="td_edit">		
-			<s:textfield  name="item.zhongbiaoCompany" value="%{item.zhongbiaoCompany}"/> 	 
+			<s:textfield  name="itemFinish.zhongbiaoCompany" value="%{itemFinish.zhongbiaoCompany}"/> 	 
         </td>
         <td height="24" align="right" class="td_lable">招竞标时间</td>
         <td class="td_edit">		
-			<s:textfield  name="item.jingbiaoDate" value="%{item.jingbiaoDate}" cssClass="date" /> 	 
+			<s:textfield  name="itemFinish.jingbiaoDate" value="%{itemFinish.jingbiaoDate}" cssClass="date" /> 	 
         </td>
     </tr> 
     <tr>
         <td height="24" align="right" class="td_lable">参加招 标人员</td>
         <td class="td_edit" colspan="3">		
-			<s:textarea name="item.bidParticipants" value="%{item.bidParticipants}"  cols="80" rows="3"/>
+			<s:textarea name="itemFinish.bidParticipants" value="%{itemFinish.bidParticipants}"  cols="80" rows="3"/>
         </td>
     </tr>
     <tr>
         <td height="24" align="right" class="td_lable">完成工期或购销时间</td>
         <td class="td_edit">		
-			<s:textfield  name="item.finishDate" value="%{item.finishDate}" cssClass="date"/> 	 
+			<s:textfield  name="itemFinish.finishDate" value="%{itemFinish.finishDate}" cssClass="date"/> 	 
         </td>
         <td height="24" align="right" class="td_lable">合同签订时间</td>
         <td class="td_edit">		
-			<s:textfield  name="item.contractSignDate" value="%{item.contractSignDate}" cssClass="date" /> 	 
+			<s:textfield  name="itemFinish.contractSignDate" value="%{itemFinish.contractSignDate}" cssClass="date" /> 	 
         </td>
     </tr> 
     <tr>
         <td height="24" align="right" class="td_lable">主办部门负责人</td>
         <td class="td_edit">		
-			<s:textfield  name="item.sponsorDeptRespPers" value="%{item.sponsorDeptRespPers}"/> 	 
+			<s:textfield  name="itemFinish.sponsorDeptRespPers" value="%{itemFinish.sponsorDeptRespPers}"/> 	 
         </td>
         <td height="24" align="right" class="td_lable">经办人</td>
         <td class="td_edit">		
-			<s:textfield  name="item.jingbanPers" value="%{item.jingbanPers}" /> 	 
+			<s:textfield  name="itemFinish.jingbanPers" value="%{itemFinish.jingbanPers}" /> 	 
         </td>
     </tr>
     <tr>
         <td height="24" align="right" class="td_lable">结项主要内容</td>
         <td class="td_edit" colspan="3">		
-			<s:textarea name="item.finishSummary" value="%{item.finishSummary}"  cols="80" rows="3"/>
+			<s:textarea name="itemFinish.finishSummary" value="%{itemFinish.finishSummary}"  cols="80" rows="3"/>
         </td>
     </tr>
     <tr>
         <td height="24" align="right" class="td_lable">主管领导审批意见</td>
         <td class="td_edit" colspan="3">		
-			<s:property value="%{item.leadComments}" />
+			<s:property value="%{itemFinish.leadComments}" />
         </td>
     </tr>
     <tr>
@@ -107,7 +108,7 @@ function forsubmit() {
     <tr>
         <td height="24" align="right" class="td_lable">纪检监察机关意见</td>
         <td class="td_edit" colspan="3">		
-			<s:property value="%{item.jjwComments}" />
+			<s:property value="%{itemFinish.jjwComments}" />
         </td>
     </tr>
     <tr>
@@ -124,7 +125,7 @@ function forsubmit() {
     <tr>
         <td height="24" align="right" class="td_lable">备注</td>
         <td class="td_edit" colspan="3">		
-			<s:textarea name="item.finishNote" value="%{item.finishNote}"  cols="80" rows="3"/>
+			<s:textarea name="itemFinish.finishNote" value="%{itemFinish.finishNote}"  cols="80" rows="3"/>
         </td>
     </tr>
     <tr>

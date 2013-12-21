@@ -135,12 +135,40 @@
 		<property name="acceptInfoExt" column="accept_Info_Ext"  />
 		<property name="acceptDate" column="accept_Date"/>
 	</class>
-	<class name="com.jitong.workflow.domain.ItemPayment" table="OA_Item_Payment"> 
+	<!-- <class name="com.jitong.workflow.domain.ItemPayment" table="OA_Item_Payment"> 
 		<id name="id" type="string" unsaved-value="null">
 			<column name="id" sql-type="varchar(32)" />
 			<generator class="uuid.hex" />
 		</id>
 		<property name="itemId" column="item_id" />
+		<property name="payCompany" column="pay_Company"/>
+		<property name="payDate" column="pay_Date"/>
+		<property name="payAmount" column="pay_Amount"/>
+	</class> -->
+	<!-- 结项+付款 -->
+	<class name="com.jitong.workflow.domain.ItemFinish" table="OA_ITEM_FINISH">
+		<id name="id" type="string" unsaved-value="null">
+			<column name="id" sql-type="varchar(32)" />
+			<generator class="uuid.hex" />
+		</id>
+		<many-to-one name="item" column="item_id" />  
+		<property name="finishItemName" column="finish_Item_Name" />
+		<property name="investAmount" column="invest_Amount" />
+		<property name="biaodiAmount" column="biaodi_Amount" />
+		<property name="zhongbiaoPrice" column="zhongbiao_Price" />
+		<property name="zhongbiaoCompany" column="zhongbiao_Company" />
+		<property name="jingbiaoDate" column="jingbiao_Date" />
+		<property name="bidParticipants" column="bid_Participants" />
+		<property name="finishDate" column="finish_Date" />
+		<property name="contractSignDate" column="contract_Sign_Date" />
+		<property name="sponsorDeptRespPers" column="sponsor_Dept_Resp_Pers" />
+		<property name="jingbanPers" column="jingban_Pers" />
+		<property name="finishSummary" column="finish_Summary" />
+		<property name="leadComments" column="lead_Comments" />
+		<property name="jjwComments" column="jjw_Comments" />
+		<property name="finishNote" column="finish_Note" />
+		<property name="status" column="status" />
+		
 		<property name="payCompany" column="pay_Company"/>
 		<property name="payDate" column="pay_Date"/>
 		<property name="payAmount" column="pay_Amount"/>

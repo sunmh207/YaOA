@@ -13,7 +13,7 @@
 <table width="101%" class="table" align="center" cellpadding="1" cellspacing="0" bgcolor="#FFFFFF">
 	<tr>
 		<td class="td_header">序号</td>
-		<td class="td_header">项目名称</td>
+		<td class="td_header">标题</td>
 		<td class="td_header">提交人</td>
 		<td class="td_header">提交日期</td>
 		<td class="td_header">状态</td>

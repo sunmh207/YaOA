@@ -86,6 +86,12 @@ function submitBid() {
 			<s:textfield  name="bid.agentPersonPhone" value="%{bid.agentPersonPhone}"/> 	 
         </td>
     </tr>
+    <tr>
+        <td height="24" align="right" class="td_lable">主办部门负责人</td>
+        <td class="td_edit" colspan="3">		
+			<s:textfield  name="bid.responsiblePerson" value="%{bid.responsiblePerson}" /> 	 
+        </td>
+    </tr>
      <tr>
         <td height="24" align="right" class="td_lable">推荐投标单位</td>
         <td class="td_edit" colspan="3">	

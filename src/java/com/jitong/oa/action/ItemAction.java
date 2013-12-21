@@ -58,11 +58,11 @@ public class ItemAction extends JITActionBase implements Preparable {
 		statusMap.put(Item.STATUS_10_ON_ACCEPT, Item.status2Txt(Item.STATUS_10_ON_ACCEPT));
 		
 		statusMap.put(Item.STATUS_11_ON_FINISH, Item.status2Txt(Item.STATUS_11_ON_FINISH));
-		statusMap.put(Item.STATUS_11_ON_FINISH_PENDING_LEAD_APPROVE, Item.status2Txt(Item.STATUS_11_ON_FINISH_PENDING_LEAD_APPROVE));
+		/*statusMap.put(Item.STATUS_11_ON_FINISH_PENDING_LEAD_APPROVE, Item.status2Txt(Item.STATUS_11_ON_FINISH_PENDING_LEAD_APPROVE));
 		statusMap.put(Item.STATUS_11_ON_FINISH_LEAD_APPROVED, Item.status2Txt(Item.STATUS_11_ON_FINISH_LEAD_APPROVED));
 		statusMap.put(Item.STATUS_11_ON_FINISH_LEAD_REJECT, Item.status2Txt(Item.STATUS_11_ON_FINISH_LEAD_REJECT));
 		statusMap.put(Item.STATUS_11_ON_FINISH_PENDING_JJW_APPROVE, Item.status2Txt(Item.STATUS_11_ON_FINISH_PENDING_JJW_APPROVE));
-		statusMap.put(Item.STATUS_11_ON_FINISH_JJW_REJECT, Item.status2Txt(Item.STATUS_11_ON_FINISH_JJW_REJECT));
+		statusMap.put(Item.STATUS_11_ON_FINISH_JJW_REJECT, Item.status2Txt(Item.STATUS_11_ON_FINISH_JJW_REJECT));*/
 		
 		statusMap.put(Item.STATUS_12_ON_PAY, Item.status2Txt(Item.STATUS_12_ON_PAY));
 		statusMap.put(Item.STATUS_13_CLOSE, Item.status2Txt(Item.STATUS_13_CLOSE));

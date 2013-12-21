@@ -52,12 +52,12 @@ public class Item {
 	
 	//发起人（填写结项表）->主管领导审批 ->（同意）->发起人>纪委审批->发起人-才能进行结项。
 	public static String STATUS_11_ON_FINISH="11_ON_FINISH";//结项中
-	public static String STATUS_11_ON_FINISH_PENDING_LEAD_APPROVE="11_ON_FINISH_PENDING_LEAD_APPROVE";//待领导审批
+	/*public static String STATUS_11_ON_FINISH_PENDING_LEAD_APPROVE="11_ON_FINISH_PENDING_LEAD_APPROVE";//待领导审批
 	public static String STATUS_11_ON_FINISH_LEAD_APPROVED="11_ON_FINISH_LEAD_APPROVED";//领导审批通过
 	public static String STATUS_11_ON_FINISH_LEAD_REJECT="11_ON_FINISH_LEAD_REJECT";//领导审批不通过
 	public static String STATUS_11_ON_FINISH_PENDING_JJW_APPROVE="11_ON_FINISH_PENDING_JJW_APPROVE";//待纪检委审批
 	public static String STATUS_11_ON_FINISH_JJW_REJECT="11_ON_FINISH_JJW_REJECT";//纪检委审批不通过
-	
+*/	
 	public static String STATUS_12_ON_PAY="12_ON_PAY";//纪检委审批通过，进入‘付款中’
 	public static String STATUS_13_CLOSE="13_CLOSE";//项目结束
 	
@@ -88,7 +88,7 @@ public class Item {
 	private String surveyReportReporterName;
 	
 	//---------结项内容-------------------
-	private String finishItemName;//结项名称
+	/*private String finishItemName;//结项名称
 	private String investAmount;//投资金额
 	private String biaodiAmount;//标底
 	private String zhongbiaoPrice;//中标价;
@@ -103,7 +103,7 @@ public class Item {
 	private String leadComments;//主管领导意见
 	private String jjwComments;//纪检委意见
 	private String finishNote;//结项备注
-	
+*/	
 	/*private ItemBid bid;*/
 	
 	public String getId() {
@@ -237,7 +237,7 @@ public class Item {
 	}
 
 
-	public String getFinishItemName() {
+	/*public String getFinishItemName() {
 		return finishItemName;
 	}
 	public void setFinishItemName(String finishItemName) {
@@ -326,7 +326,7 @@ public class Item {
 	}
 	public void setFinishNote(String finishNote) {
 		this.finishNote = finishNote;
-	}
+	}*/
 	public static String status2Txt(String st){
 		if(STATUS_1_NEW.equals(st)){
 			return "1.新申请";
@@ -376,7 +376,7 @@ public class Item {
 			return "10.验收中";
 		}else if(STATUS_11_ON_FINISH.equals(st)){
 			return "11.结项中";
-		}else if(STATUS_11_ON_FINISH_PENDING_LEAD_APPROVE.equals(st)){
+		/*}else if(STATUS_11_ON_FINISH_PENDING_LEAD_APPROVE.equals(st)){
 			return "11.待领导审批";
 		}else if(STATUS_11_ON_FINISH_LEAD_APPROVED.equals(st)){
 			return "11.领导审批通过";
@@ -385,7 +385,7 @@ public class Item {
 		}else if(STATUS_11_ON_FINISH_PENDING_JJW_APPROVE.equals(st)){
 			return "11.待纪检委审批";
 		}else if(STATUS_11_ON_FINISH_JJW_REJECT.equals(st)){
-			return "11.未通过纪检委审批";
+			return "11.未通过纪检委审批";*/
 		}else if(STATUS_12_ON_PAY.equals(st)){
 			return "11.付款中";
 		}else if(STATUS_13_CLOSE.equals(st)){

@@ -28,7 +28,7 @@
 		<property name="surveyReportReporterName" column="survey_rpt_reporter_name" />
 		
 		<!-- <one-to-one name="bid" />   -->
-		<property name="finishItemName" column="finish_Item_Name" />
+		<!-- <property name="finishItemName" column="finish_Item_Name" />
 		<property name="investAmount" column="invest_Amount" />
 		<property name="biaodiAmount" column="biaodi_Amount" />
 		<property name="zhongbiaoPrice" column="zhongbiao_Price" />
@@ -42,7 +42,7 @@
 		<property name="finishSummary" column="finish_Summary" />
 		<property name="leadComments" column="lead_Comments" />
 		<property name="jjwComments" column="jjw_Comments" />
-		<property name="finishNote" column="finish_Note" />
+		<property name="finishNote" column="finish_Note" /> -->
 	</class>
 
 	<class name="com.jitong.oa.domain.ItemOperator" table="OA_ITEM_OPERATOR">

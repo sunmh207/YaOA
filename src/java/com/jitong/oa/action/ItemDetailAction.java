@@ -10,7 +10,7 @@ import com.jitong.workflow.domain.BidMeetingRecord;
 import com.jitong.workflow.domain.ItemAccept;
 import com.jitong.workflow.domain.ItemApprove;
 import com.jitong.workflow.domain.ItemBid;
-import com.jitong.workflow.domain.ItemPayment;
+import com.jitong.workflow.domain.ItemFinish;
 import com.jitong.workflow.domain.RecommendBidder;
 import com.opensymphony.xwork2.Preparable;
 
@@ -27,7 +27,7 @@ public class ItemDetailAction extends JITActionBase implements Preparable {
 	private List<ItemApprove> jjwApproveList;
 	private List<RecommendBidder> recommendBidderList;
 	private List<ItemAccept> itemAcceptList;
-	private List<ItemPayment> itemPaymentList;
+	private List<ItemFinish> itemFinishtList;
 	private List<BidMeetingRecord> bidMeetingRecordList;
 	private List<ItemApprove> onfinishLeadApproveList;
 	private List<ItemApprove> onfinishJJWApproveList;
@@ -54,7 +54,7 @@ public class ItemDetailAction extends JITActionBase implements Preparable {
 		
 		recommendBidderList = (List<RecommendBidder>) service.queryByHql("from RecommendBidder bidder where bidder.itemId='" + item.getId() + "'");
 		itemAcceptList = (List<ItemAccept>)service.queryByHql("from ItemAccept accept where accept.itemId='"+item.getId()+"'");
-		itemPaymentList = (List<ItemPayment>) service.queryByHql("from ItemPayment payment where payment.itemId='" + item.getId() + "'");
+		itemFinishtList = (List<ItemFinish>) service.queryByHql("from ItemFinish finish where finish.item.id='" + item.getId() + "'");
 		bidMeetingRecordList = (List<BidMeetingRecord>)service.queryByHql("from BidMeetingRecord record where record.itemId='"+item.getId()+"'");
 		
 		onfinishLeadApproveList = (List<ItemApprove>) service.queryByHql("from ItemApprove approve where approve.type='"+ItemApprove.TYPE_ONFINISH_LEAD_APPROVE+"' and approve.itemId='" + item.getId() + "' order by approve.operationTime");
@@ -112,12 +112,13 @@ public class ItemDetailAction extends JITActionBase implements Preparable {
 		this.itemAcceptList = itemAcceptList;
 	}
 
-	public List<ItemPayment> getItemPaymentList() {
-		return itemPaymentList;
+
+	public List<ItemFinish> getItemFinishtList() {
+		return itemFinishtList;
 	}
 
-	public void setItemPaymentList(List<ItemPayment> itemPaymentList) {
-		this.itemPaymentList = itemPaymentList;
+	public void setItemFinishtList(List<ItemFinish> itemFinishtList) {
+		this.itemFinishtList = itemFinishtList;
 	}
 
 	public List<ItemApprove> getItemApproveList() {

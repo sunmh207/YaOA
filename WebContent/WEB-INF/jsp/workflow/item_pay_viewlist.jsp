@@ -13,7 +13,7 @@
 <table width="101%" class="table" align="center" cellpadding="1" cellspacing="0" bgcolor="#FFFFFF">
 	<tr>
 		<td class="td_header">序号</td>
-		<td class="td_header">项目名称</td>
+		<td class="td_header">标题</td>
 		<td class="td_header">提交人</td>
 		<td class="td_header">提交日期</td>
 		<td class="td_header">状态</td>
@@ -27,7 +27,6 @@
 			<td align="left" class='td_body'> <s:property  value="applyDate"/> </td>
 			<td align="left" class='td_body'> <s:property  value="statusTXT"/></td>
 			<td align="center" class='td_body'>
-				<%-- <a href="${root}/workflow/itempayinput!input.do?item.id=<s:property  value="id"/>">付款记录</a>&nbsp; --%>
 				<a href="${root}/oa/itemdetail!view.do?item.id=<s:property value="id"/>">查看详细</a>&nbsp;
 			</td>
 		</tr>

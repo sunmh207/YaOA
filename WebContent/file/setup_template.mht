@@ -1117,7 +1117,7 @@ lang=3DEN-US style=3D'font-size:14.0pt;font-family:·ÂËÎ_GB2312;mso-fareast-=
 font-family:
 ËÎÌå;mso-hansi-font-family:ËÎÌå'><span class=3DSpellE>$hostDept$</span><span
 style=3D'mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 </span>$applyDate$</span>
 
 
@@ -1721,11 +1721,7 @@ ctly;
   mso-element:frame;mso-element-frame-hspace:9.0pt;mso-element-wrap:around;
   mso-element-anchor-vertical:paragraph;mso-element-anchor-horizontal:margi=
 n;
-  mso-element-top:13.55pt;mso-height-rule:exactly'><span lang=3DEN-US
-  style=3D'font-size:12.0pt;mso-bidi-font-size:11.0pt;font-family:·ÂËÎ_GB23=
-12;
-  mso-fareast-font-family:ËÎÌå;mso-hansi-font-family:ËÎÌå;background:lime;
-  mso-highlight:lime'><o:p>&nbsp;</o:p></span></p>
+  mso-element-top:13.55pt;mso-height-rule:exactly'></p>
   <p class=3DMsoNormal style=3D'line-height:20.0pt;mso-line-height-rule:exa=
 ctly;
   mso-element:frame;mso-element-frame-hspace:9.0pt;mso-element-wrap:around;
@@ -2032,9 +2028,7 @@ amily:
 <span
   lang=3DEN-US style=3D'font-size:12.0pt;mso-bidi-font-size:11.0pt;font-fam=
 ily:
-  ·ÂËÎ_GB2312;mso-fareast-font-family:ËÎÌå;mso-hansi-font-family:ËÎÌå;backg=
-round:
-  #C6D9F1'><span class=3DSpellE>$zhaobiaoDeptResponsiblePerson$</span></spa=
+  ·ÂËÎ_GB2312;mso-fareast-font-family:ËÎÌå;mso-hansi-font-family:ËÎÌå;><span class=3DSpellE>$zhaobiaoDeptResponsiblePerson$</span></spa=
 n><span
   style=3D'font-size:12.0pt;mso-bidi-font-size:11.0pt;font-family:ËÎÌå;mso-=
 ascii-font-family:

@@ -9,6 +9,7 @@ import com.jitong.common.util.JTMath;
 import com.jitong.console.domain.User;
 import com.jitong.oa.domain.Item;
 import com.jitong.workflow.domain.ItemBid;
+import com.jitong.workflow.domain.ItemFinish;
 import com.jitong.oa.service.ItemService;
 import com.jitong.workflow.domain.ItemApprove;
 import com.opensymphony.xwork2.Preparable;
@@ -140,25 +141,27 @@ public class PortaletsAction extends JITActionBase implements Preparable {
 				status_10_on_accept=String.valueOf(itemOnAcceptList.size());
 			}
 			
-			String status_11_on_finish_sponsor_hql = "select item from Item item  where item.requesterId='"+u.getId()+"' and item.status in ('"+Item.STATUS_11_ON_FINISH+"','"+Item.STATUS_11_ON_FINISH_LEAD_REJECT+"','"+Item.STATUS_11_ON_FINISH_JJW_REJECT+"')";
+			String status_11_on_finish_sponsor_hql = "select item from Item item  where item.requesterId='"+u.getId()+"' and item.status in ('"+Item.STATUS_11_ON_FINISH+"')";
 			List status_11_on_finish_sponsor_list = service.queryByHql(status_11_on_finish_sponsor_hql);
 			if(status_11_on_finish_sponsor_list!=null){
 				status_11_on_finish=String.valueOf(status_11_on_finish_sponsor_list.size());
 			}
-			String status_11_on_finish_lead_hql="select item from Item item, ItemApprove approve where item.id=approve.itemId and item.status in ('"+Item.STATUS_11_ON_FINISH_PENDING_LEAD_APPROVE+"') "
+			
+			String status_11_on_finish_lead_hql="select finish from ItemFinish finish, ItemApprove approve where finish.id=approve.itemId and finish.status in ('"+ItemFinish.STATUS_11_ON_FINISH_PENDING_JJW_APPROVE+"') "
 			+ " and approve.approverId='" + u.getId() + "' and approve.status='" + ItemApprove.STATUS_PENDING + "' and approve.type='"+ ItemApprove.TYPE_ONFINISH_LEAD_APPROVE + "'";
 			List status_11_on_finish_lead_list = service.queryByHql(status_11_on_finish_lead_hql);
 			if(status_11_on_finish_lead_list!=null){
 				status_11_on_finish+=String.valueOf(status_11_on_finish_lead_list.size());
 			}
-			String status_11_on_finish_jjw_hql="select item from Item item, ItemApprove approve where item.id=approve.itemId and item.status in ('"+Item.STATUS_11_ON_FINISH_PENDING_JJW_APPROVE+"') "
+			
+			String status_11_on_finish_jjw_hql="select finish from ItemFinish finish, ItemApprove approve where finish.id=approve.itemId and finish.status in ('"+ItemFinish.STATUS_11_ON_FINISH_PENDING_JJW_APPROVE+"') "
 			+ " and approve.approverId='" + u.getId() + "' and approve.status='" + ItemApprove.STATUS_PENDING + "' and approve.type='"+ ItemApprove.TYPE_ONFINISH_JJW_APPROVE + "'";
 			List status_11_on_finish_jjw_list = service.queryByHql(status_11_on_finish_jjw_hql);
 			if(status_11_on_finish_jjw_list!=null){
 				status_11_on_finish+=String.valueOf(status_11_on_finish_jjw_list.size());
 			}
 			
-			String status_12_on_pay_seq = " from Item item where item.requesterId = '" + u.getId() + "' and item.status in ('"+Item.STATUS_12_ON_PAY+"') ";
+			String status_12_on_pay_seq = " from Item item where item.requesterId = '" + u.getId() + "' and item.status in ('"+Item.STATUS_11_ON_FINISH+"','"+Item.STATUS_12_ON_PAY+"') ";
 			List itemOnPayList = service.queryByHql(status_12_on_pay_seq);
 			if(itemOnPayList!=null){
 				status_12_on_pay=String.valueOf(itemOnPayList.size());

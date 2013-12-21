@@ -1,16 +1,16 @@
 package com.jitong.workflow.action;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import com.jitong.common.action.JITActionBase;
 import com.jitong.common.exception.JTException;
 import com.jitong.console.domain.User;
 import com.jitong.oa.domain.Item;
 import com.jitong.oa.service.ItemService;
-import com.jitong.workflow.domain.ItemAccept;
-import com.jitong.workflow.domain.ItemBid;
-import com.jitong.workflow.domain.ItemPayment;
+import com.jitong.workflow.domain.ItemFinish;
 import com.jitong.workflow.domain.RecommendBidder;
 import com.opensymphony.xwork2.Preparable;
 
@@ -23,28 +23,41 @@ import com.opensymphony.xwork2.Preparable;
 public class ItemPayAction extends JITActionBase implements Preparable {
 	private static ItemService service;
 	private Item item;
-	private ItemBid bid;
-	private ItemPayment itemPayment;
+	//private ItemBid bid;
+	//private ItemPayment itemPayment;
+	
+	private ItemFinish itemFinish;
 
-	private List<RecommendBidder> recommendBidderList;
-	private List<ItemPayment> itemPaymentList;
-
+	//private List<RecommendBidder> recommendBidderList;
+	private List<ItemFinish> itemPaymentList;
+	
+	private Map<String,String> paymentMap=new HashMap<String,String>();;
 	public void prepare() throws JTException {
 		if (service == null) {
 			service = new ItemService();
 		}
+		if (itemFinish != null && itemFinish.getId() != null) {
+			itemFinish = (ItemFinish) service.findBoById(ItemFinish.class,itemFinish.getId());
+		}
 		if (item != null && item.getId() != null) {
-			item = service.findItem(item.getId());
-			bid = (ItemBid) service.findBoById(ItemBid.class, item.getId());
+			item = (Item) service.findBoById(Item.class,item.getId());
 		}
-		if (itemPayment != null && itemPayment.getId() != null) {
+		/*if (itemPayment != null && itemPayment.getId() != null) {
 			itemPayment = (ItemPayment)service.findBoById(ItemPayment.class,itemPayment.getId());
-		}
+		}*/
 	}
 
 	public String input() throws JTException {
-		recommendBidderList = (List<RecommendBidder>) service.queryByHql("from RecommendBidder bidder where bidder.itemId='" + item.getId() + "'");
-		itemPaymentList = (List<ItemPayment>) service.queryByHql("from ItemPayment payment where payment.itemId='" + item.getId() + "'");
+		if (item!= null && item.getId() != null) {
+			itemPaymentList = (List<ItemFinish>) service.queryByHql("from ItemFinish itemFinish where itemFinish.item.id='" + item.getId() + "'");
+			
+			paymentMap.clear();
+			for(ItemFinish f:itemPaymentList){
+				if(ItemFinish.STATUS_11_ON_FINISH_JJW_APPROVED.equals(f.getStatus())){
+					paymentMap.put(f.getId(), f.getFinishItemName());
+				}
+			}
+		}
 		return INPUT;
 	}
 
@@ -53,18 +66,18 @@ public class ItemPayAction extends JITActionBase implements Preparable {
 		if (u == null) {
 			throw new JTException("用户超时", this.getClass());
 		}
-		itemPayment.setItemId(item.getId());
-		service.saveOrUpdateBo(itemPayment);
+		itemFinish.setStatus(ItemFinish.STATUS_11_PAID);
+		service.updateBo(itemFinish);
 		this.addActionMessage("保存成功");
 		return input();
 	}
-	public String delete() throws Exception {
-		if(itemPayment!=null&&itemPayment.getId()!=null){
-			service.deleteBo(ItemPayment.class, itemPayment.getId());
+	/*public String delete() throws Exception {
+		if(itemFinish!=null&&itemFinish.getId()!=null){
+			service.deleteBo(ItemFinish.class, itemFinish.getId());
 		}
 		this.addActionMessage("删除成功");
 		return input();
-	}
+	}*/
 	public String finishPay() throws Exception {
 		item.setStatus(Item.STATUS_13_CLOSE);
 		service.updateItem(item);
@@ -76,9 +89,10 @@ public class ItemPayAction extends JITActionBase implements Preparable {
 		if (u == null) {
 			throw new JTException("用户超时", this.getClass());
 		}
-		String hql = "from Item item  where item.status in('"+ Item.STATUS_12_ON_PAY + "') ";
+		String hql = " from Item item where item.requesterId = '" + u.getId() + "' and item.status in ('"+Item.STATUS_11_ON_FINISH+"','"+Item.STATUS_12_ON_PAY+"') ";
 		return hql;
 	}
+
 
 	public Item getItem() {
 		return item;
@@ -88,36 +102,28 @@ public class ItemPayAction extends JITActionBase implements Preparable {
 		this.item = item;
 	}
 
-	public ItemBid getBid() {
-		return bid;
-	}
-
-	public void setBid(ItemBid bid) {
-		this.bid = bid;
-	}
-
-	public List<RecommendBidder> getRecommendBidderList() {
-		return recommendBidderList;
-	}
-
-	public void setRecommendBidderList(List<RecommendBidder> recommendBidderList) {
-		this.recommendBidderList = recommendBidderList;
-	}
-
-	public ItemPayment getItemPayment() {
-		return itemPayment;
-	}
-
-	public void setItemPayment(ItemPayment itemPayment) {
-		this.itemPayment = itemPayment;
-	}
-
-	public List<ItemPayment> getItemPaymentList() {
+	public List<ItemFinish> getItemPaymentList() {
 		return itemPaymentList;
 	}
 
-	public void setItemPaymentList(List<ItemPayment> itemPaymentList) {
+	public void setItemPaymentList(List<ItemFinish> itemPaymentList) {
 		this.itemPaymentList = itemPaymentList;
+	}
+
+	public ItemFinish getItemFinish() {
+		return itemFinish;
+	}
+
+	public void setItemFinish(ItemFinish itemFinish) {
+		this.itemFinish = itemFinish;
+	}
+
+	public Map<String, String> getPaymentMap() {
+		return paymentMap;
+	}
+
+	public void setPaymentMap(Map<String, String> paymentMap) {
+		this.paymentMap = paymentMap;
 	}
 
 }

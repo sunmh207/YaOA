@@ -26,6 +26,7 @@ function finishBid() {
 <s:hidden name="item.id" value="%{item.id}" />
 <table width="99%" class="table" cellpadding="0" cellspacing="0" align="center">
      <tr>
+      <td height="24" rowspan="8" class="td_lable">主办部门填写</td>
         <td height="24" align="right" class="td_lable">主办部门</td>
         <td class="td_edit">		
 			<s:property  value="%{bid.hostDept}"/> 	 
@@ -72,6 +73,12 @@ function finishBid() {
 			<s:property value="%{bid.agentPersonPhone}"/> 	 
         </td>
     </tr>
+    <tr>
+        <td height="24" align="right" class="td_lable">主办部门负责人</td>
+        <td class="td_edit" colspan="3">		
+			<s:property  value="%{bid.responsiblePerson}" /> 	 
+        </td>
+    </tr>
      <tr>
         <td height="24" align="right" class="td_lable">推荐投标单位</td>
         <td class="td_edit" colspan="3">	
@@ -90,20 +97,25 @@ function finishBid() {
         </td>
     </tr>
      
-    <tr>
+     <tr>
+      <td height="24" rowspan="5" class="td_lable">招标管理部门填写</td>
         <td height="24" align="right" class="td_lable">竞标时间</td>
-        <td class="td_edit" colspan="3">		
-			<s:property  value="%{bid.bidDate}"  /> 	 
+        <td class="td_edit">		
+			<s:property value="%{bid.bidDate}"  /> 	 
         </td>
-    </tr>
-    <tr>
         <td height="24" align="right" class="td_lable">招竞标形式</td>
         <td class="td_edit">		
 			<s:property   value="%{bid.bidType}" /> 	 
         </td>
+    </tr>
+    <tr>
         <td height="24" align="right" class="td_lable">经办人</td>
         <td class="td_edit">		
 			<s:property  value="%{bid.zhaobiaoDeptAgentPerson}"/> 	 
+        </td>
+         <td height="24" align="right" class="td_lable">招标管理部门负责人</td>
+        <td class="td_edit">		
+			<s:property   value="%{bid.zhaobiaoDeptResponsiblePerson}" /> 	 
         </td>
     </tr>
     <tr>
@@ -126,6 +138,7 @@ function finishBid() {
         </td>
     </tr>
      <tr>
+      <td height="24" rowspan="2" class="td_lable">纪检监察机关填写</td>
         <td height="24" align="right" class="td_lable">纪检监察机关意见</td>
         <td class="td_edit" colspan="3">		
 			<s:property  value="%{bid.jjwDeptComments}" /> 	 
@@ -138,6 +151,7 @@ function finishBid() {
         </td>
     </tr>
     <tr>
+       <td height="24" rowspan="3" class="td_lable"> </td>
         <td height="24" align="right" class="td_lable">开标会议记录</td>
         <td class="td_edit" colspan="3">	
         <a href="${root}/workflow/onbid6!editBidMeetingRecord.do?item.id=<s:property value="item.id"/>">增加会议记录</a>&nbsp;&nbsp;<br>
@@ -168,8 +182,7 @@ function finishBid() {
         </td>
     </tr>
     <tr>
-      <td  height="24" align="right" class="td_lable"></td>
-      <td class="td_edit" colspan="3">	
+      <td class="td_edit" colspan="5" align="center">	
        <input type="button" onclick="submitBid()"  value="保存">
        <input type="button" onclick="finishBid()"  value="结束招标">
         <input type="button" onclick="location.href='${root}/workflow/onbid.do'" value="返回">

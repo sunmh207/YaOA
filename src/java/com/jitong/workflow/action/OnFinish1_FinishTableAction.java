@@ -10,6 +10,7 @@ import com.jitong.console.domain.User;
 import com.jitong.oa.domain.Item;
 import com.jitong.oa.service.ItemService;
 import com.jitong.workflow.domain.ItemApprove;
+import com.jitong.workflow.domain.ItemFinish;
 import com.opensymphony.xwork2.Preparable;
 /**
  * 填写结项表
@@ -19,6 +20,7 @@ import com.opensymphony.xwork2.Preparable;
 public class OnFinish1_FinishTableAction extends JITActionBase implements Preparable {
 	private static ItemService service;
 	private Item item;
+	private ItemFinish itemFinish;
 	
 	private List<ItemApprove> leadApproveList;
 	private List<ItemApprove> jjwApproveList;
@@ -28,13 +30,18 @@ public class OnFinish1_FinishTableAction extends JITActionBase implements Prepar
 			service = new ItemService();
 		}
 		if (item != null && item.getId() != null) {
-			item = service.findItem(item.getId());
+			item = (Item)service.findBoById(Item.class,item.getId());
+		}
+		if (itemFinish != null && itemFinish.getId() != null) {
+			itemFinish = (ItemFinish)service.findBoById(ItemFinish.class,itemFinish.getId());
 		}
 	}
 
 	public String input() throws JTException {
-		leadApproveList = (List<ItemApprove>) service.queryByHql("from ItemApprove approve where approve.type='"+ItemApprove.TYPE_ONFINISH_LEAD_APPROVE+"' and approve.itemId='" + item.getId() + "' order by approve.operationTime");
-		jjwApproveList = (List<ItemApprove>) service.queryByHql("from ItemApprove approve where approve.type='"+ItemApprove.TYPE_ONFINISH_JJW_APPROVE+"' and approve.itemId='" + item.getId() + "' order by approve.operationTime");
+		if (itemFinish != null && itemFinish.getId() != null) {
+		leadApproveList = (List<ItemApprove>) service.queryByHql("from ItemApprove approve where approve.type='"+ItemApprove.TYPE_ONFINISH_LEAD_APPROVE+"' and approve.itemId='" + itemFinish.getId() + "' order by approve.operationTime");
+		jjwApproveList = (List<ItemApprove>) service.queryByHql("from ItemApprove approve where approve.type='"+ItemApprove.TYPE_ONFINISH_JJW_APPROVE+"' and approve.itemId='" + itemFinish.getId() + "' order by approve.operationTime");
+		}
 		return INPUT;
 	}
 	
@@ -45,16 +52,20 @@ public class OnFinish1_FinishTableAction extends JITActionBase implements Prepar
 			throw new JTException("用户超时", this.getClass());
 		}
 		
-		item.setStatus(Item.STATUS_11_ON_FINISH_PENDING_LEAD_APPROVE);
-		service.updateItem(item);
-		
+		itemFinish.setStatus(ItemFinish.STATUS_11_ON_FINISH_PENDING_LEAD_APPROVE);
+		itemFinish.setItem(item);
+		if(StringUtil.isEmpty(itemFinish.getId())){
+			service.createBo(itemFinish);
+		}else{
+			service.updateBo(itemFinish);
+		}
 		//Add Approve record
 		String idString = request.getParameter("useridStr");
 		String[] ids = StringUtil.parseString2Array(idString, ",");
 		for (String id : ids) {
 			//check existing
 			String hql="from ItemApprove approve where approve.type='"+ItemApprove.TYPE_ONFINISH_LEAD_APPROVE+"' " +
-					" and approve.itemId='" + item.getId() + "' " +
+					" and approve.itemId='" + itemFinish.getId() + "' " +
 					" and approve.status='"+ItemApprove.STATUS_PENDING+"'"+
 					" and approve.approverId='" + id + "' ";
 			
@@ -62,7 +73,7 @@ public class OnFinish1_FinishTableAction extends JITActionBase implements Prepar
 			ItemApprove itemApprove = null;
 			if(approveList.isEmpty()){
 				itemApprove = new ItemApprove();
-				itemApprove.setItemId(item.getId());
+				itemApprove.setItemId(itemFinish.getId());
 				itemApprove.setApproverId(id);
 				itemApprove.setApproverName(SysCache.interpertUserName(id));
 				itemApprove.setType(ItemApprove.TYPE_ONFINISH_LEAD_APPROVE);
@@ -74,12 +85,13 @@ public class OnFinish1_FinishTableAction extends JITActionBase implements Prepar
 		return SUCCESS;
 	}
 
-	public Item getItem() {
-		return item;
+
+	public ItemFinish getItemFinish() {
+		return itemFinish;
 	}
 
-	public void setItem(Item item) {
-		this.item = item;
+	public void setItemFinish(ItemFinish itemFinish) {
+		this.itemFinish = itemFinish;
 	}
 
 	public List<ItemApprove> getLeadApproveList() {
@@ -96,6 +108,14 @@ public class OnFinish1_FinishTableAction extends JITActionBase implements Prepar
 
 	public void setJjwApproveList(List<ItemApprove> jjwApproveList) {
 		this.jjwApproveList = jjwApproveList;
+	}
+
+	public Item getItem() {
+		return item;
+	}
+
+	public void setItem(Item item) {
+		this.item = item;
 	}
 	
 }
