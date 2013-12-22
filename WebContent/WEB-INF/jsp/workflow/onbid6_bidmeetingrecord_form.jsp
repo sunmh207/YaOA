@@ -1,7 +1,31 @@
 ﻿<%@ page contentType="text/html; charset=utf-8"%>
 <%@include file="/WEB-INF/jsp/include.jsp"%>
 <html:pageHead>
-
+<script type="text/javascript">
+function forSave() {
+	var frm =document.getElementById('bidForm');
+	if(window.confirm("确定要提交?")){
+		var bidApplyDate =document.getElementById('bidForm_bid_applyDate');
+		var meetingDate =document.getElementById('bidForm_bidMeetingRecord_date');
+		
+		 if(meetingDate.value==null||meetingDate.value==""){
+			alert("日期不能为空");
+			return false;
+		}
+		var dstart=new Date(bidApplyDate.value);
+		var dend=new Date(meetingDate.value);
+		
+		var diffday= parseInt((dend.getTime() - dstart.getTime()) / parseInt(1000 * 3600 * 24));
+			if(diffday<7){
+			alert("立项表和开标会时间必须相隔7天以上");
+			return false;
+		} 
+		
+		frm.action="${root}/workflow/onbid6!saveBidMeetingRecord.do";  
+ 		frm.submit();
+	}
+}
+</script>
 </html:pageHead>
 <body>
 <html:pagetitle title="项目招标->招标文件->项目的开标会记录"/>
@@ -10,6 +34,7 @@
 <s:actionmessage />
 <s:form id="bidForm" action="onbid6!saveBidMeetingRecord.do" method="post"  enctype="multipart/form-data">
 <s:hidden name="bid.itemId" value="%{bid.itemId}" />
+<s:hidden name="bid.applyDate" value="%{bid.applyDate}" />
 <s:hidden name="item.id" value="%{item.id}" />
 <s:hidden name="bidMeetingRecord.id" value="%{bidMeetingRecord.id}" />
 <table width="100%" class="table" cellpadding="0" cellspacing="0" align="center">
@@ -23,7 +48,7 @@
     <tr>
         <td height="24" align="right" class="td_lable">日期</td>
         <td class="td_edit">		
-			<s:textfield  name="bidMeetingRecord.date" value="%{bidMeetingRecord.date}" cssClass="date"/> 	 
+			<s:textfield  name="bidMeetingRecord.date" value="%{bidMeetingRecord.date}" cssClass="date"/> 	(必须在立项表<s:property value="%{bid.applyDate}" />的7天之后) 
         </td>
         <td height="24" align="right" class="td_lable">地点</td>
         <td class="td_edit">		
@@ -74,38 +99,8 @@
         </td>
     </tr>
     </table>
-    
   
-	<%-- <tr>
-        <td height="24" align="right" class="td_lable">投标单位</td>
-        <td class="td_edit">		
-			<s:textfield  name="bidMeetingRecord.bidderName" value="%{bidMeetingRecord.bidderName}"/> 	 
-        </td>
-        <td height="24" align="right" class="td_lable">投标书编号</td>
-        <td class="td_edit">		
-			<s:textfield  name="bidMeetingRecord.bidderBiaoshuNo" value="%{bidMeetingRecord.bidderBiaoshuNo}" /> 	 
-        </td>
-    </tr>
-	<tr>
-        <td height="24" align="right" class="td_lable">单位法人</td>
-        <td class="td_edit">		
-			<s:textfield  name="bidMeetingRecord.bidderFarendaibiaoName" value="%{bidMeetingRecord.bidderFarendaibiaoName}"/> 	 
-        </td>
-        <td height="24" align="right" class="td_lable">委托人</td>
-        <td class="td_edit">		
-			<s:textfield  name="bidMeetingRecord.bidderWeituorenName" value="%{bidMeetingRecord.bidderWeituorenName}" /> 	 
-        </td>
-    </tr>
-	<tr>
-        <td height="24" align="right" class="td_lable">委托人身份证号</td>
-        <td class="td_edit">		
-			<s:textfield  name="bidMeetingRecord.bidderWeituorenId" value="%{bidMeetingRecord.bidderWeituorenId}"/> 	 
-        </td>
-        <td height="24" align="right" class="td_lable">投标单位报价</td>
-        <td class="td_edit">		
-			<s:textfield  name="bidMeetingRecord.bidderBaojia" value="%{bidMeetingRecord.bidderBaojia}" /> 	 
-        </td>
-    </tr> --%>
+	
     <table width="100%" class="table" align="center" cellpadding="1" cellspacing="0" bgcolor="#FFFFFF">
 	<tr>
 		<td class="td_header" rowspan="2">投标书编号</td>
@@ -158,7 +153,7 @@
 	<tr>
       <td  height="24" align="right" class="td_lable"></td>
       <td class="td_edit" colspan="3">	
-      <input type="submit"  value="保存">
+      <input type="button"  value="保存" onclick="forSave()">
        <input type="button" onclick="location.href='${root}/workflow/onbid6!input.do?item.id=<s:property value="item.id"/>'" value="返回">
       </td>
       <td>&nbsp;</td>

@@ -12,6 +12,7 @@
      List<?> list = (List<?>) session.getAttribute(JitongConstants.SESSION_OBJECT);
      String path = application.getRealPath("/") + File.separator + "file" + File.separator + "tmp";
      String fileName = FileUtil.exportFile(path, list, true);
+     System.out.println(fileName);
      url = request.getContextPath() + "/file/tmp/" + fileName;
      response.sendRedirect(url);
 

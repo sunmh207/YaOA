@@ -1,14 +1,23 @@
-﻿
-<%@ page contentType="text/html; charset=utf-8"%>
+﻿<%@ page contentType="text/html; charset=utf-8"%>
 <%@include file="/WEB-INF/jsp/include.jsp"%>
-<%@include file="/WEB-INF/jsp/jquery-include.jsp"%>
-<html:pageHead />
+<html:pageHead/>
+<script type="text/javascript">
+
+function exportExcel() {
+	var frm =document.getElementById('itemForm');
+	frm.action='${root}/oa/itemdetail!exportBiddersReport.do?item.id=<%=request.getParameter("item.id")%>' ; 
+		
+	frm.submit();
+	}
+</script>	
+
 <body>
-<input type="button" value="返回" onclick="window.history.go(-1);"> 
-<center>
-
 <html:pagetitle title="竞标监督登记表"/>
-
+<input type="button" value="返回" onclick="window.history.go(-1);"> 
+<input type="button" value="导出Excel" onclick="exportExcel()"> 
+<center>
+<s:form id="itemForm" action=""  method="post" >
+</s:form>
 <table width="100%" class="table" align="center" cellpadding="1" cellspacing="0" bgcolor="#FFFFFF">
 	<tr>
 		<td class="td_header">参加投标单位</td>

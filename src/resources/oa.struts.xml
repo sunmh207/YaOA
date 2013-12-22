@@ -25,6 +25,10 @@
 			<interceptor-ref name="myStackNoAuth"></interceptor-ref>
 			<result name="success">/WEB-INF/jsp/oa/itemlist.jsp</result>
 		</action>
+		<action name="itemview" class="com.jitong.oa.action.ItemAction"	method="list">
+			<interceptor-ref name="myStackNoAuth"></interceptor-ref>
+			<result name="success">/WEB-INF/jsp/oa/itemviewlist.jsp</result>
+		</action>
 		<action name="iteminput" class="com.jitong.oa.action.ItemAction"  method="input">
 			<result name="success" type="redirectAction">item</result>
 			<result name="input">/WEB-INF/jsp/oa/itemform.jsp</result>
@@ -37,6 +41,7 @@
 			<result name="input">/WEB-INF/jsp/oa/itemdetail.jsp</result>
 			<result name="biddersreport">/WEB-INF/jsp/oa/biddersreport.jsp</result>
 			<result name="setupreport">/WEB-INF/jsp/oa/setupreport.jsp</result>
+			<result name="finishreportlist">/WEB-INF/jsp/oa/finishreportlist.jsp</result>
 			<result name="finishreport">/WEB-INF/jsp/oa/finishreport.jsp</result>
 		</action>
 		

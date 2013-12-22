@@ -280,11 +280,78 @@
         <td height="24" align="right" class="td_lable">会议记录</td>
         <td class="td_edit" colspan="3">	
 			<s:iterator value="bidMeetingRecordList" status="st">
-        		<s:property value='#st.index+1'/>.<s:property value="title"/>&nbsp;&nbsp;
-	        	<a href="${root}/oa/download!downloadBidMeetingRecordNote.do?bidMeetingRecord.id=<s:property value="id"/>">下载附件</a><br>
+        		<table width="99%" class="table" align="center" cellpadding="1" cellspacing="0" bgcolor="#FFFFFF">
+				<tr>
+					<td class="td_header">日期</td>
+					<td class="td_header">地点</td>
+					<td class="td_header">招标形式</td>
+					<td class="td_header">主持人</td>
+					<td class="td_header">评委</td>
+					<td class="td_header">纪委</td>
+					<td class="td_header">评标办法</td>
+					<td class="td_header">标底</td>
+					<td class="td_header">评委廉政承诺书</td>
+					<td class="td_header">中标单位</td>
+					<td class="td_header">中标金额</td>
+					<td class="td_header">会议记录</td>
+				</tr>
+				<tr>
+					<td align="center" class="td_body"><s:property value='date'/> </td>
+					<td align="center" class="td_body"><s:property value='place'/> </td>
+					<td align="center" class="td_body"><s:property value='bidType'/> </td>
+					<td align="center" class="td_body"><s:property value='host'/> </td>
+					<td align="center" class="td_body"><s:property value='judge'/> </td>
+					<td align="center" class="td_body"><s:property value='jjwJudge'/> </td>
+					<td align="center" class="td_body"> <a href="${root}/oa/download!downloadMeetingRecord_JudgeSummary.do?bidMeetingRecord.id=<s:property value="id"/>">下载附件</a> </td>
+					<td align="center" class="td_body"><s:property value='bidBase'/> </td>
+					<td align="center" class="td_body"><a href="${root}/oa/download!downloadMeetingRecord_JudgeChengnuoshu.do?bidMeetingRecord.id=<s:property value="id"/>">下载附件</a><br></td>
+					<td align="center" class="td_body"><s:property value='winner'/> </td>
+					<td align="center" class="td_body"><s:property value='winAmount'/> </td>
+					<td align="center" class="td_body"><a href="${root}/oa/download!downloadBidMeetingRecordNote.do?bidMeetingRecord.id=<s:property value="id"/>">下载附件</a></td>
+				</tr>
+				</table>
+					
+	        	<%-- <a href="${root}/oa/download!downloadBidMeetingRecordNote.do?bidMeetingRecord.id=<s:property value="id"/>">下载附件</a><br> --%>
         	</s:iterator> 
         </td>
     </tr> 
+    <tr>
+        <td height="24" align="right" class="td_lable">推荐投标单位</td>
+        <td class="td_edit" colspan="3">	
+			<table width="100%" class="table" align="center" cellpadding="1" cellspacing="0" bgcolor="#FFFFFF">
+			<tr>
+				<td class="td_header" rowspan="2">投标书编号</td>
+				<td class="td_header" rowspan="2">投标单位</td>
+				<td class="td_header" rowspan="2">营业执照注册号</td>
+				<td class="td_header" rowspan="2">单位法人</td>
+				<td class="td_header" rowspan="2">委托人</td>
+				<td class="td_header" rowspan="2">身份证号</td>
+				<td class="td_header" colspan="4">投标单位报价</td>
+			</tr>
+			<tr>
+				<td class="td_header">第一次</td>
+				<td class="td_header">第二次</td>
+				<td class="td_header">第三次</td>
+				<td class="td_header">得分</td>
+			</tr>
+			<s:iterator value="recommendBidderList" status="st">
+				<tr>
+				<td class='td_body'><s:property value="%{recommendBidderList[#st.index].biaoshubianhao}"/></td>
+				<td class='td_body'><s:property value="%{recommendBidderList[#st.index].name}"/></td>
+				<td class='td_body'><s:property  value="%{recommendBidderList[#st.index].yingyezhizhao}"/></td>
+				<td class='td_body'><s:property  value="%{recommendBidderList[#st.index].farendaibiaoName}"/></td>
+				<td class='td_body'><s:property  value="%{recommendBidderList[#st.index].weituorenName}"/></td>
+				<td class='td_body'><s:property value="%{recommendBidderList[#st.index].weituorenId}" /></td>
+				<td class='td_body'><s:property  value="%{recommendBidderList[#st.index].baojia1}" /></td>
+				<td class='td_body'><s:property  value="%{recommendBidderList[#st.index].baojia2}" /></td>
+				<td class='td_body'><s:property  value="%{recommendBidderList[#st.index].baojia3}" /></td>
+				<td class='td_body'><s:property  value="%{recommendBidderList[#st.index].score}" /></td>
+				</tr>
+			</s:iterator>
+			</table>			
+
+        </td>
+    </tr>
     <tr>
         <td height="24" align="right" class="td_lable">议标说明</td>
         <td class="td_edit" colspan="3">	

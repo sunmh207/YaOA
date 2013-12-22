@@ -8,6 +8,7 @@ import com.jitong.common.action.JITActionBase;
 import com.jitong.common.exception.JTException;
 import com.jitong.common.util.DateUtil;
 import com.jitong.common.util.SearchFormUtil;
+import com.jitong.common.util.StringUtil;
 import com.jitong.console.domain.User;
 import com.jitong.oa.domain.Item;
 import com.jitong.oa.form.ItemSearchForm;
@@ -15,7 +16,14 @@ import com.jitong.oa.service.ItemService;
 import com.opensymphony.xwork2.Preparable;
 
 public class ItemAction extends JITActionBase implements Preparable {
-	private ItemSearchForm searchForm;
+	//private ItemSearchForm searchForm;
+	private String qryItemName;
+	private String qryItemType;
+	private String qryStatus;
+	private String qryApplyDateStart;
+	private String qryApplyDateEnd;
+	private String qryHostDept;
+
 	private static ItemService service;
 	private Item item;
 	private Map<String,String> statusMap;
@@ -106,23 +114,41 @@ public class ItemAction extends JITActionBase implements Preparable {
 
 
 	public String getListHQL(ArrayList<Object> params) throws JTException {
-		if(searchForm==null){
+		/*if(searchForm==null){
 			searchForm = new ItemSearchForm();
-		}
-		String hqlsufix = SearchFormUtil.toHQLSuffix(searchForm, params);
+		}*/
+		//String hqlsufix = SearchFormUtil.toHQLSuffix(searchForm, params);
 		String hql = "from Item item,ItemBid bid where item.id= bid.itemId " ;
+		if(!StringUtil.isEmpty(qryItemName)){
+			hql+=" and item.itemName like '%"+qryItemName+"%'";
+		}
+		if(!StringUtil.isEmpty(qryItemType)){
+			hql+=" and item.itemType = '"+qryItemType+"'";
+		}
+		if(!StringUtil.isEmpty(qryStatus)){
+			hql+=" and item.status = '"+qryStatus+"'";
+		}
+		if(!StringUtil.isEmpty(qryApplyDateStart)){
+			hql+=" and bid.applyDate >= '"+qryApplyDateStart+"'";
+		}
+		if(!StringUtil.isEmpty(qryApplyDateEnd)){
+			hql+=" and bid.applyDate <= '"+qryApplyDateEnd+"'";
+		}
+		if(!StringUtil.isEmpty(qryHostDept)){
+			hql+=" and bid.hostDept like '%"+qryHostDept+"%'";
+		}
 		return hql;
 	}
 
 
-	public ItemSearchForm getSearchForm() {
+/*	public ItemSearchForm getSearchForm() {
 		return searchForm;
 	}
 
 
 	public void setSearchForm(ItemSearchForm searchForm) {
 		this.searchForm = searchForm;
-	}
+	}*/
 
 
 	public Item getItem() {
@@ -142,6 +168,66 @@ public class ItemAction extends JITActionBase implements Preparable {
 
 	public void setStatusMap(Map<String, String> statusMap) {
 		this.statusMap = statusMap;
+	}
+
+
+	public String getQryItemName() {
+		return qryItemName;
+	}
+
+
+	public void setQryItemName(String qryItemName) {
+		this.qryItemName = qryItemName;
+	}
+
+
+	public String getQryItemType() {
+		return qryItemType;
+	}
+
+
+	public void setQryItemType(String qryItemType) {
+		this.qryItemType = qryItemType;
+	}
+
+
+	public String getQryStatus() {
+		return qryStatus;
+	}
+
+
+	public void setQryStatus(String qryStatus) {
+		this.qryStatus = qryStatus;
+	}
+
+
+	public String getQryApplyDateStart() {
+		return qryApplyDateStart;
+	}
+
+
+	public void setQryApplyDateStart(String qryApplyDateStart) {
+		this.qryApplyDateStart = qryApplyDateStart;
+	}
+
+
+	public String getQryApplyDateEnd() {
+		return qryApplyDateEnd;
+	}
+
+
+	public void setQryApplyDateEnd(String qryApplyDateEnd) {
+		this.qryApplyDateEnd = qryApplyDateEnd;
+	}
+
+
+	public String getQryHostDept() {
+		return qryHostDept;
+	}
+
+
+	public void setQryHostDept(String qryHostDept) {
+		this.qryHostDept = qryHostDept;
 	}
 	
 }

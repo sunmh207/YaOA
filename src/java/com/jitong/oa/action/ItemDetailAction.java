@@ -2,6 +2,7 @@ package com.jitong.oa.action;
 
 import java.util.List;
 
+import com.jitong.JitongConstants;
 import com.jitong.common.action.JITActionBase;
 import com.jitong.common.exception.JTException;
 import com.jitong.oa.domain.Item;
@@ -17,6 +18,7 @@ import com.opensymphony.xwork2.Preparable;
 public class ItemDetailAction extends JITActionBase implements Preparable {
 	private static ItemService service;
 	private Item item;
+	private ItemFinish itemFinish;
 	private ItemBid bid;
 	private List<ItemApprove> itemApproveList;
 	private List<ItemApprove> mktSignApproveList;
@@ -32,6 +34,8 @@ public class ItemDetailAction extends JITActionBase implements Preparable {
 	private List<ItemApprove> onfinishLeadApproveList;
 	private List<ItemApprove> onfinishJJWApproveList;
 	
+	private List<ItemApprove> finish_zbdeptApproveList;
+	private List<ItemApprove> finish_jjwApproveList;
 	
 	public void prepare() throws JTException {
 		if (service == null) {
@@ -66,16 +70,32 @@ public class ItemDetailAction extends JITActionBase implements Preparable {
 		recommendBidderList = (List<RecommendBidder>) service.queryByHql("from RecommendBidder bidder where bidder.itemId='" + item.getId() + "'");
 		return "setupreport";
 	}
+	public String finishReportList() throws JTException {
+		itemFinishtList = (List<ItemFinish>) service.queryByHql("from ItemFinish finish where finish.item.id='" + item.getId() + "'");
+		return "finishreportlist";
+	}
 	public String finishReport() throws JTException {
-		recommendBidderList = (List<RecommendBidder>) service.queryByHql("from RecommendBidder bidder where bidder.itemId='" + item.getId() + "'");
+		if (itemFinish != null && itemFinish.getId() != null) {
+			itemFinish=(ItemFinish)service.findBoById(ItemFinish.class, itemFinish.getId());
+			finish_zbdeptApproveList=(List<ItemApprove>) service.queryByHql("from ItemApprove approve where approve.type='"+ItemApprove.TYPE_ONFINISH_LEAD_APPROVE+"' and approve.itemId='" + itemFinish.getId() + "' order by approve.operationTime");
+			finish_jjwApproveList = (List<ItemApprove>) service.queryByHql("from ItemApprove approve where approve.type='"+ItemApprove.TYPE_ONFINISH_JJW_APPROVE+"' and approve.itemId='" + itemFinish.getId() + "' order by approve.operationTime");
+		}
 		return "finishreport";
 	}
+	
+	
+	
 	//------结项表----------
 	
 	//-----竞争监督登记表-----
 	public String biddersReport() throws JTException {
 		recommendBidderList = (List<RecommendBidder>) service.queryByHql("from RecommendBidder bidder where bidder.itemId='" + item.getId() + "'");
 		return "biddersreport";
+	}
+	public String exportBiddersReport() throws JTException {
+		recommendBidderList = (List<RecommendBidder>) service.queryByHql("from RecommendBidder bidder where bidder.itemId='" + item.getId() + "'");
+		session.put(JitongConstants.SESSION_OBJECT, recommendBidderList);
+		return "exportExcel";
 	}
 	
 	
@@ -199,6 +219,30 @@ public class ItemDetailAction extends JITActionBase implements Preparable {
 
 	public void setOnfinishJJWApproveList(List<ItemApprove> onfinishJJWApproveList) {
 		this.onfinishJJWApproveList = onfinishJJWApproveList;
+	}
+
+	public ItemFinish getItemFinish() {
+		return itemFinish;
+	}
+
+	public void setItemFinish(ItemFinish itemFinish) {
+		this.itemFinish = itemFinish;
+	}
+
+	public List<ItemApprove> getFinish_zbdeptApproveList() {
+		return finish_zbdeptApproveList;
+	}
+
+	public void setFinish_zbdeptApproveList(List<ItemApprove> finish_zbdeptApproveList) {
+		this.finish_zbdeptApproveList = finish_zbdeptApproveList;
+	}
+
+	public List<ItemApprove> getFinish_jjwApproveList() {
+		return finish_jjwApproveList;
+	}
+
+	public void setFinish_jjwApproveList(List<ItemApprove> finish_jjwApproveList) {
+		this.finish_jjwApproveList = finish_jjwApproveList;
 	}
 
 }

@@ -9,7 +9,7 @@ function fSubmit(){
 </script>
 <body>
 <center>
-<form id="searchForm"　action="${root}/oa/item.do">
+<form id="searchForm"　action="${root}/oa/itemview.do">
 <div style="float: left; padding-bottom: 0px;">
 项目名称 <input name="qryItemName" value='${qryItemName}' size="5">&nbsp;&nbsp;
 分类<s:select  name="qryItemType" list="#{'物资管理':'物资管理', '工程建设':'工程建设'}"  headerKey="" headerValue="--请选择--"/>
@@ -38,7 +38,6 @@ function fSubmit(){
 		<td class="td_header">提交人</td>
 		<td class="td_header">提交日期</td>
 		<td class="td_header">状态</td>
-		<td class="td_header" width="210">操作</td>
 	</tr>
 	<s:iterator value="objectList" status="st">
 		<tr>
@@ -57,12 +56,6 @@ function fSubmit(){
 			<td align="left" class='td_body'> <s:property  value="objectList[#st.index][0].applyDate"/></td>
 			<td align="left" class='td_body'> <s:property  value="objectList[#st.index][0].statusTXT"/></td>
 			
-			<td align="center" class='td_body'>
-				<a href="${root}/oa/itemdetail!view.do?item.id=<s:property  value="objectList[#st.index][0].id"/>">详细</a>&nbsp;
-				<a href="${root}/oa/itemdetail!setupReport.do?item.id=<s:property  value="objectList[#st.index][0].id"/>">立项表</a>&nbsp;	 
-				<a href="${root}/oa/itemdetail!finishReportList.do?item.id=<s:property  value="objectList[#st.index][0].id"/>">结项表</a>	&nbsp;
-				<a href="${root}/oa/itemdetail!biddersReport.do?item.id=<s:property  value="objectList[#st.index][0].id"/>">竞标监督登记表</a>	
-			</td>
 		</tr>
 		</s:iterator>
 </table>

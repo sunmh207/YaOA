@@ -10,15 +10,15 @@ import com.jitong.common.exception.JTException;
 import com.jitong.common.util.DateUtil;
 import com.jitong.oa.domain.Item;
 import com.jitong.oa.service.ItemService;
-import com.jitong.workflow.domain.BidMeetingRecord;
-import com.jitong.workflow.domain.ItemAccept;
 import com.jitong.workflow.domain.ItemBid;
+import com.jitong.workflow.domain.ItemFinish;
 import com.jitong.workflow.domain.RecommendBidder;
 import com.opensymphony.xwork2.Preparable;
 
 public class ExportWordAction extends JITActionBase implements Preparable {
 	private static ItemService service;
 	private Item item;
+	private ItemFinish itemFinish;
 	private ItemBid bid;
 	private List<RecommendBidder> recommendBidderList;
 
@@ -84,6 +84,41 @@ public class ExportWordAction extends JITActionBase implements Preparable {
 		session.put("template", "file"+File.separator + "setup_template.mht");
 		return "export";
 	}
+	/**
+	 * 导出结项表
+	 * 
+	 * @return
+	 */
+	public String exportFinish() throws JTException{
+		if (itemFinish != null && itemFinish.getId() != null) {
+			itemFinish = (ItemFinish) service.findBoById(ItemFinish.class, itemFinish.getId());
+		}
+		Map dataMap = new HashMap();
+		String	currentDate=DateUtil.getCurrentTime("yyyy年MM月d日");
+		dataMap.put("currentDate", currentDate);
+		
+		dataMap.put("finishItemName", itemFinish.getFinishItemName());
+		dataMap.put("investAmount", itemFinish.getInvestAmount());
+		dataMap.put("biaodiAmount", itemFinish.getBiaodiAmount());
+		dataMap.put("zhongbiaoPrice", itemFinish.getZhongbiaoPrice());
+		dataMap.put("zhongbiaoCompany", itemFinish.getZhongbiaoCompany());
+		dataMap.put("jingbiaoDate", itemFinish.getJingbiaoDate());
+		dataMap.put("bidParticipants", itemFinish.getBidParticipants());
+		dataMap.put("finishDate", itemFinish.getFinishDate());
+		dataMap.put("contractSignDate", itemFinish.getContractSignDate());
+		dataMap.put("sponsorDeptRespPers", itemFinish.getSponsorDeptRespPers());
+		dataMap.put("jingbanPers", itemFinish.getJingbanPers());
+		dataMap.put("finishSummary", itemFinish.getFinishSummary());
+		dataMap.put("leadComments", itemFinish.getLeadComments());
+		dataMap.put("jjwComments", itemFinish.getJjwComments());
+		dataMap.put("finishNote", itemFinish.getFinishNote());
+		
+		
+		
+		session.put("dataMap", dataMap);
+		session.put("template", "file"+File.separator + "finish_template.mht");
+		return "export";
+	}
 
 	
 	public Item getItem() {
@@ -102,6 +137,20 @@ public class ExportWordAction extends JITActionBase implements Preparable {
 		this.bid = bid;
 	}
 
+	public ItemFinish getItemFinish() {
+		return itemFinish;
+	}
 
+	public void setItemFinish(ItemFinish itemFinish) {
+		this.itemFinish = itemFinish;
+	}
+
+	public List<RecommendBidder> getRecommendBidderList() {
+		return recommendBidderList;
+	}
+
+	public void setRecommendBidderList(List<RecommendBidder> recommendBidderList) {
+		this.recommendBidderList = recommendBidderList;
+	}
 
 }
