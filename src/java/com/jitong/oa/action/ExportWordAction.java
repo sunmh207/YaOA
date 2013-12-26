@@ -8,8 +8,10 @@ import java.util.Map;
 import com.jitong.common.action.JITActionBase;
 import com.jitong.common.exception.JTException;
 import com.jitong.common.util.DateUtil;
+import com.jitong.common.util.StringUtil;
 import com.jitong.oa.domain.Item;
 import com.jitong.oa.service.ItemService;
+import com.jitong.workflow.domain.BidMeetingRecord;
 import com.jitong.workflow.domain.ItemBid;
 import com.jitong.workflow.domain.ItemFinish;
 import com.jitong.workflow.domain.RecommendBidder;
@@ -93,6 +95,7 @@ public class ExportWordAction extends JITActionBase implements Preparable {
 		if (itemFinish != null && itemFinish.getId() != null) {
 			itemFinish = (ItemFinish) service.findBoById(ItemFinish.class, itemFinish.getId());
 		}
+		
 		Map dataMap = new HashMap();
 		String	currentDate=DateUtil.getCurrentTime("yyyy年MM月d日");
 		dataMap.put("currentDate", currentDate);
@@ -113,14 +116,48 @@ public class ExportWordAction extends JITActionBase implements Preparable {
 		dataMap.put("jjwComments", itemFinish.getJjwComments());
 		dataMap.put("finishNote", itemFinish.getFinishNote());
 		
-		
-		
 		session.put("dataMap", dataMap);
 		session.put("template", "file"+File.separator + "finish_template.mht");
 		return "export";
 	}
 
-	
+	public String exportSupervision() throws JTException{
+		recommendBidderList = (List<RecommendBidder>) service.queryByHql("from RecommendBidder bidder where bidder.itemId='" + item.getId() + "'");
+		List<BidMeetingRecord> bidMeetingRecordList = (List<BidMeetingRecord>)service.queryByHql("from BidMeetingRecord record where record.itemId='"+item.getId()+"' order by record.date desc");
+		Map dataMap = new HashMap();
+		StringBuffer rows=new StringBuffer();
+		for(RecommendBidder bidder:recommendBidderList ){
+			String value=ROW;
+			value=value.replaceAll("\\$name\\$", StringUtil.fillNull(bidder.getName()));
+			value=value.replaceAll("\\$qiyezizhi\\$", StringUtil.fillNull(bidder.getQiyezizhi()));
+			value=value.replaceAll("\\$yingyezhizhao\\$", StringUtil.fillNull(bidder.getYingyezhizhao()));
+			value=value.replaceAll("\\$farendaibiaoName\\$", StringUtil.fillNull(bidder.getFarendaibiaoName()));
+			value=value.replaceAll("\\$weituorenName\\$", StringUtil.fillNull(bidder.getWeituorenName()));
+			value=value.replaceAll("\\$weituorenId\\$", StringUtil.fillNull(bidder.getWeituorenId()));
+			value=value.replaceAll("\\$baojia1\\$", StringUtil.fillNull(bidder.getBaojia1()));
+			value=value.replaceAll("\\$baojia2\\$", StringUtil.fillNull(bidder.getBaojia2()));
+			value=value.replaceAll("\\$baojia3\\$", StringUtil.fillNull(bidder.getBaojia3()));
+			value=value.replaceAll("\\$score\\$", StringUtil.fillNull(bidder.getScore()));
+			rows.append(value);
+		}
+		dataMap.put("ROW", rows.toString());
+		if(bidMeetingRecordList!=null&&!bidMeetingRecordList.isEmpty()){
+			BidMeetingRecord record = bidMeetingRecordList.get(0);
+			dataMap.put("meeting.date", record.getDate());
+			dataMap.put("meeting.bidBase", record.getBidBase());
+			dataMap.put("meeting.winAmount", record.getWinAmount());
+			
+			dataMap.put("meeting.bidType_place", record.getBidType()+record.getPlace());
+			dataMap.put("meeting.judge_jjwJudge", record.getJudge()+record.getJjwJudge());
+		}
+		
+		dataMap.put("bid.planAmount",bid.getPlanAmount());
+
+		
+		session.put("dataMap", dataMap);
+		session.put("template", "file"+File.separator + "supervision_template.mht");
+		return "export";
+	}
 	public Item getItem() {
 		return item;
 	}
@@ -153,4 +190,9 @@ public class ExportWordAction extends JITActionBase implements Preparable {
 		this.recommendBidderList = recommendBidderList;
 	}
 
+	private String ROW="<tr style=3D'mso-yfti-irow:2;height:47.2pt'>  <td width=3D182 style=3D'width:109.3pt;border:solid black 1.0pt;border-to=p:none;  mso-border-top-alt:solid windowtext .5pt;mso-border-alt:solid black .75pt;  mso-border-top-alt:solid windowtext .5pt;padding:0cm 0cm 0cm 0cm;height:4=7.2pt'>  <p class=3DMsoNormal style=3D'mso-element:frame;mso-element-frame-hspace:=9.0pt;  mso-element-wrap:around;mso-element-anchor-vertical:paragraph;mso-element=-anchor-horizontal:  margin;mso-element-left:center;mso-element-top:7.6pt;mso-height-rule:exac=tly'><span  style=3D'font-size:9.0pt;font-family:\"Segoe UI\",\"sans-serif\";mso-font-ker=ning:  0pt;mso-ansi-language:ZH-CN'>$name$</span><span lang=3DEN-US style=3D'mso-=bidi-font-size:  10.5pt'><o:p></o:p></span></p>  </td>  <td width=3D110 style=3D'width:66.0pt;border-top:none;border-left:none;  border-bottom:solid black 1.0pt;border-right:solid black 1.0pt;mso-border=-top-alt:  solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;mso-borde=r-top-alt:  windowtext .5pt;mso-border-left-alt:windowtext .5pt;mso-border-bottom-alt:  black .75pt;mso-border-right-alt:black .75pt;mso-border-style-alt:solid;  padding:0cm 0cm 0cm 0cm;height:47.2pt'>  <p class=3DMsoNormal align=3Dcenter style=3D'text-align:center;mso-elemen=t:frame;  mso-element-frame-hspace:9.0pt;mso-element-wrap:around;mso-element-anchor=-vertical:  paragraph;mso-element-anchor-horizontal:margin;mso-element-left:center;  mso-element-top:7.6pt;mso-height-rule:exactly'><span style=3D'font-size:9=.0pt;  font-family:\"Segoe UI\",\"sans-serif\";mso-font-kerning:0pt;mso-ansi-languag=e:  ZH-CN'>$qiyezizhi$</span><span lang=3DEN-US style=3D'mso-bidi-font-size:10.=5pt'><o:p></o:p></span></p>  </td>  <td width=3D140 colspan=3D2 style=3D'width:83.9pt;border-top:none;border-=left:none;  border-bottom:solid black 1.0pt;border-right:solid black 1.0pt;mso-border=-top-alt:  solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;mso-borde=r-top-alt:  windowtext .5pt;mso-border-left-alt:windowtext .5pt;mso-border-bottom-alt:  black .75pt;mso-border-right-alt:black .75pt;mso-border-style-alt:solid;  padding:0cm 0cm 0cm 0cm;height:47.2pt'>  <p class=3DMsoNormal align=3Dcenter style=3D'text-align:center;mso-elemen=t:frame;  mso-element-frame-hspace:9.0pt;mso-element-wrap:around;mso-element-anchor=-vertical:  paragraph;mso-element-anchor-horizontal:margin;mso-element-left:center;  mso-element-top:7.6pt;mso-height-rule:exactly'><span lang=3DEN-US  style=3D'mso-bidi-font-size:10.5pt'>$yingyezhizhao$<o:p></o:p></span></p>  </td>  <td width=3D138 style=3D'width:82.8pt;border-top:none;border-left:none;  border-bottom:solid black 1.0pt;border-right:solid black 1.0pt;mso-border=-top-alt:  solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;mso-borde=r-top-alt:  windowtext .5pt;mso-border-left-alt:windowtext .5pt;mso-border-bottom-alt:  black .75pt;mso-border-right-alt:black .75pt;mso-border-style-alt:solid;  padding:0cm 0cm 0cm 0cm;height:47.2pt'>  <p class=3DMsoNormal align=3Dcenter style=3D'text-align:center;mso-elemen=t:frame;  mso-element-frame-hspace:9.0pt;mso-element-wrap:around;mso-element-anchor=-vertical:  paragraph;mso-element-anchor-horizontal:margin;mso-element-left:center;  mso-element-top:7.6pt;mso-height-rule:exactly'><span lang=3DEN-US  style=3D'mso-bidi-font-size:10.5pt'>$farendaibiaoName$<o:p></o:p></span></p>  </td>  <td width=3D120 style=3D'width:72.0pt;border-top:none;border-left:none;  border-bottom:solid black 1.0pt;border-right:solid black 1.0pt;mso-border=-top-alt:  solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;mso-borde=r-top-alt:  windowtext .5pt;mso-border-left-alt:windowtext .5pt;mso-border-bottom-alt:  black .75pt;mso-border-right-alt:black .75pt;mso-border-style-alt:solid;  padding:0cm 0cm 0cm 0cm;height:47.2pt'>  <p class=3DMsoNormal align=3Dcenter style=3D'text-align:center;mso-elemen=t:frame;  mso-element-frame-hspace:9.0pt;mso-element-wrap:around;mso-element-anchor=-vertical:  paragraph;mso-element-anchor-horizontal:margin;mso-element-left:center;  mso-element-top:7.6pt;mso-height-rule:exactly'><span lang=3DEN-US  style=3D'mso-bidi-font-size:10.5pt'>$weituorenName$<o:p></o:p></span></p>  </td>  <td width=3D161 style=3D'width:96.8pt;border-top:none;border-left:none;  border-bottom:solid black 1.0pt;border-right:solid black 1.0pt;mso-border=-top-alt:  solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;mso-borde=r-top-alt:  windowtext .5pt;mso-border-left-alt:windowtext .5pt;mso-border-bottom-alt:  black .75pt;mso-border-right-alt:black .75pt;mso-border-style-alt:solid;  padding:0cm 0cm 0cm 0cm;height:47.2pt'>  <p class=3DMsoNormal align=3Dcenter style=3D'text-align:center;mso-elemen=t:frame;  mso-element-frame-hspace:9.0pt;mso-element-wrap:around;mso-element-anchor=-vertical:  paragraph;mso-element-anchor-horizontal:margin;mso-element-left:center;  mso-element-top:7.6pt;mso-height-rule:exactly'><span lang=3DEN-US  style=3D'mso-bidi-font-size:10.5pt'>$weituorenId$</span><span lang=3DEN-US><o:p></o:p></span></p>  </td>  <td width=3D99 style=3D'width:59.35pt;border-top:none;border-left:none;  border-bottom:solid black 1.0pt;border-right:solid black 1.0pt;mso-border=-top-alt:  solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;mso-borde=r-top-alt:  windowtext .5pt;mso-border-left-alt:windowtext .5pt;mso-border-bottom-alt:  black .75pt;mso-border-right-alt:black .75pt;mso-border-style-alt:solid;  padding:0cm 0cm 0cm 0cm;height:47.2pt'>  <p class=3DMsoNormal align=3Dcenter style=3D'text-align:center;mso-elemen=t:frame;  mso-element-frame-hspace:9.0pt;mso-element-wrap:around;mso-element-anchor=-vertical:  paragraph;mso-element-anchor-horizontal:margin;mso-element-left:center;  mso-element-top:7.6pt;mso-height-rule:exactly'><span lang=3DEN-US>$baojia1$<o:p></o:p></span></p>  </td>  <td width=3D80 style=3D'width:48.2pt;border-top:none;border-left:none;bor=der-bottom:  solid black 1.0pt;border-right:solid black 1.0pt;mso-border-top-alt:solid= windowtext .5pt;  mso-border-left-alt:solid windowtext .5pt;mso-border-top-alt:windowtext .=5pt;  mso-border-left-alt:windowtext .5pt;mso-border-bottom-alt:black .75pt;  mso-border-right-alt:black .75pt;mso-border-style-alt:solid;padding:0cm 0=cm 0cm 0cm;  height:47.2pt'>  <p class=3DMsoNormal align=3Dcenter style=3D'text-align:center;mso-elemen=t:frame;  mso-element-frame-hspace:9.0pt;mso-element-wrap:around;mso-element-anchor=-vertical:  paragraph;mso-element-anchor-horizontal:margin;mso-element-left:center;  mso-element-top:7.6pt;mso-height-rule:exactly'><span lang=3DEN-US>$baojia2$<o:p></o:p></span></p>  </td>  <td width=3D76 style=3D'width:45.65pt;border-top:none;border-left:none;  border-bottom:solid black 1.0pt;border-right:solid black 1.0pt;mso-border=-top-alt:  solid windowtext .5pt;mso-border-left-alt:solid windowtext .5pt;mso-borde=r-top-alt:  windowtext .5pt;mso-border-left-alt:windowtext .5pt;mso-border-bottom-alt:  black .75pt;mso-border-right-alt:black .75pt;mso-border-style-alt:solid;  padding:0cm 0cm 0cm 0cm;height:47.2pt'>  <p class=3DMsoNormal align=3Dcenter style=3D'text-align:center;mso-elemen=t:frame;  mso-element-frame-hspace:9.0pt;mso-element-wrap:around;mso-element-anchor=-vertical:  paragraph;mso-element-anchor-horizontal:margin;mso-element-left:center;  mso-element-top:7.6pt;mso-height-rule:exactly'><span lang=3DEN-US>$baojia3$<o:p></o:p></span></p>  </td>  <td width=3D85 style=3D'width:51.1pt;border-top:none;border-left:none;bor=der-bottom:  solid black 1.0pt;border-right:solid black 1.0pt;mso-border-top-alt:solid= windowtext .5pt;  mso-border-left-alt:solid windowtext .5pt;mso-border-top-alt:windowtext .=5pt;  mso-border-left-alt:windowtext .5pt;mso-border-bottom-alt:black .75pt;  mso-border-right-alt:black .75pt;mso-border-style-alt:solid;padding:0cm 0=cm 0cm 0cm;  height:47.2pt'>  <p class=3DMsoNormal align=3Dcenter style=3D'text-align:center;mso-elemen=t:frame;  mso-element-frame-hspace:9.0pt;mso-element-wrap:around;mso-element-anchor=-vertical:  paragraph;mso-element-anchor-horizontal:margin;mso-element-left:center;  mso-element-top:7.6pt;mso-height-rule:exactly'><span lang=3DEN-US>$score$<o=:p></o:p></span></p>  </td> </tr> ";
+	
+	public static void main(String []args){
+		System.out.println("$score$, Good".replaceAll("\\$score\\$", null));
+	}
 }

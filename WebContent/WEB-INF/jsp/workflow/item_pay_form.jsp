@@ -65,7 +65,7 @@
         <td height="24" align="right" class="td_lable">结项名称</td>
         <td class="td_edit">		
         <s:select  name="itemFinish.id" list="paymentMap"/>        
-		<a href="${root}/oa/itemdetail!view.do?itemFinish.id=<s:property value="item.id"/>">项目详细信息</a>&nbsp;				 
+		<a href="${root}/oa/itemdetail!view.do?item.id=<s:property value="item.id"/>">项目详细信息</a>&nbsp;				 
         </td>
     </tr>
 
@@ -79,6 +79,12 @@
         <td height="24" align="right" class="td_lable">付款日期</td>
         <td class="td_edit" colspan="3">	
         <s:textfield name="itemFinish.payDate" value="%{itemFinish.payDate}" cssClass="date"/>
+        </td>
+    </tr>   
+    <tr>
+        <td height="24" align="right" class="td_lable">付款金额</td>
+        <td class="td_edit" colspan="3">	
+        <s:textfield name="itemFinish.payAmount" value="%{itemFinish.payAmount}"/>
         </td>
     </tr>   
      <tr>
@@ -102,6 +108,7 @@
 		<td class="td_header">完成工期或购销时间</td>
 		<td class="td_header">付款单位</td>
 		<td class="td_header">付款日期</td>
+		<td class="td_header">付款金额</td>
 		<td class="td_header">状态</td>
 	</tr>
 	<s:iterator value="itemPaymentList" status="st">
@@ -113,6 +120,7 @@
 			<td align="left" class='td_body'><s:property value="finishDate"/></td>
 			<td align="left" class='td_body'> <s:property  value="payCompany"/></td>
 			<td align="left" class='td_body'> <s:property  value="payDate"/></td>
+			<td align="left" class='td_body'> <s:property  value="payAmount"/></td>
 			<td align="left" class='td_body'><s:property value="item.statusTXT"/>-><s:property value="statusTXT"/></td>
 		</tr>
 	</s:iterator>

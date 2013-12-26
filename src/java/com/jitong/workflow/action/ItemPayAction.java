@@ -89,7 +89,7 @@ public class ItemPayAction extends JITActionBase implements Preparable {
 		if (u == null) {
 			throw new JTException("用户超时", this.getClass());
 		}
-		String hql = " from Item item where item.requesterId = '" + u.getId() + "' and item.status in ('"+Item.STATUS_11_ON_FINISH+"','"+Item.STATUS_12_ON_PAY+"') ";
+		String hql = " from Item item where item.requesterId = '" + u.getId() + "' and item.status in ('"+Item.STATUS_11_ON_FINISH+"','"+Item.STATUS_12_ON_PAY+"','"+Item.STATUS_10_ON_ACCEPT+"') ";
 		return hql;
 	}
 

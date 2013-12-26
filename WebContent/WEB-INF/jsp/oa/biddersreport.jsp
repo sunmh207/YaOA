@@ -14,7 +14,9 @@ function exportExcel() {
 <body>
 <html:pagetitle title="竞标监督登记表"/>
 <input type="button" value="返回" onclick="window.history.go(-1);"> 
-<input type="button" value="导出Excel" onclick="exportExcel()"> 
+<!-- <input type="button" value="导出Excel" onclick="exportExcel()">  -->
+<input type="button" onclick="location.href='${root}/oa/exportword!exportSupervision.do?item.id=<s:property value="item.id"/>'" value="导出Word"> 	
+
 <center>
 <s:form id="itemForm" action=""  method="post" >
 </s:form>

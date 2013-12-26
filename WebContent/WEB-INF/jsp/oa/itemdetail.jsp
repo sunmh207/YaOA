@@ -495,7 +495,7 @@
 				<td class="td_header">付款日期</td>
 				<td class="td_header">付款金额</td>
 			</tr>
-			<s:iterator value="itemPaymentList" status="st">
+			<s:iterator value="itemFinishtList" status="st">
 				<tr>
 				<td align="center" class="td_header"><s:property value='#st.index+1'/> </td>
 					<td align="left" class='td_body'> <s:property  value="payCompany"/></td>

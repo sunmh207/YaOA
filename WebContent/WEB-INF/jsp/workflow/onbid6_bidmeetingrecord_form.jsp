@@ -105,6 +105,7 @@ function forSave() {
 	<tr>
 		<td class="td_header" rowspan="2">投标书编号</td>
 		<td class="td_header" rowspan="2">投标单位</td>
+		<td class="td_header" rowspan="2">企业资质等级和证号</td>
 		<td class="td_header" rowspan="2">营业执照注册号</td>
 		<td class="td_header" rowspan="2">单位法人</td>
 		<td class="td_header" rowspan="2">委托人</td>
@@ -121,6 +122,7 @@ function forSave() {
 		<tr>
 		<td class='td_body'><s:textfield name="recommendBidderList[%{#st.index}].biaoshubianhao" value="%{recommendBidderList[#st.index].biaoshubianhao}"/></td>
 		<td class='td_body'><s:textfield name="recommendBidderList[%{#st.index}].name" value="%{recommendBidderList[#st.index].name}"/></td>
+		<td class='td_body'><s:textfield name="recommendBidderList[%{#st.index}].qiyezizhi" value="%{recommendBidderList[#st.index].qiyezizhi}"/></td>
 		<td class='td_body'><s:textfield name="recommendBidderList[%{#st.index}].yingyezhizhao" value="%{recommendBidderList[#st.index].yingyezhizhao}"/></td>
 		<td class='td_body'><s:textfield name="recommendBidderList[%{#st.index}].farendaibiaoName" value="%{recommendBidderList[#st.index].farendaibiaoName}"/></td>
 		<td class='td_body'><s:textfield name="recommendBidderList[%{#st.index}].weituorenName" value="%{recommendBidderList[#st.index].weituorenName}"/></td>
