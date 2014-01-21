@@ -27,8 +27,15 @@ function forsubmit() {
     
     <tr>
         <td height="24" align="right" class="td_lable">结项名称</td>
+        <td class="td_edit" colspan="3">		
+			<s:textfield  name="itemFinish.finishItemName" value="%{itemFinish.finishItemName}" size="50"/>  &nbsp;&nbsp;项目名称：<s:property value="%{item.itemName}"/> 	 
+        </td>
+        
+    </tr>
+    <tr>
+        <td height="24" align="right" class="td_lable">结项日期</td>
         <td class="td_edit">		
-			<s:textfield  name="itemFinish.finishItemName" value="%{itemFinish.finishItemName}"/> 	 
+			<s:textfield  name="itemFinish.finishItemDate" value="%{itemFinish.finishItemDate}" cssClass="date" /> 	 
         </td>
         <td height="24" align="right" class="td_lable">投资金额</td>
         <td class="td_edit">		

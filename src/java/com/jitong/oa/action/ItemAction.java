@@ -118,7 +118,7 @@ public class ItemAction extends JITActionBase implements Preparable {
 			searchForm = new ItemSearchForm();
 		}*/
 		//String hqlsufix = SearchFormUtil.toHQLSuffix(searchForm, params);
-		String hql = "from Item item,ItemBid bid where item.id= bid.itemId " ;
+		String hql = "from Item item,ItemBid bid,ItemFinish finish where item.id = bid.itemId and finish.item.id=item.id " ;
 		if(!StringUtil.isEmpty(qryItemName)){
 			hql+=" and item.itemName like '%"+qryItemName+"%'";
 		}

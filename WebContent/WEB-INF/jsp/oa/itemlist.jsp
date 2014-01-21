@@ -35,6 +35,11 @@ function fSubmit(){
 		<td class="td_header">资金来源</td>
 		<td class="td_header">招标形式</td>
 		
+		<td class="td_header">投标单位</td>
+		<td class="td_header">中标单位</td>
+		<td class="td_header">结项时间</td>
+		<td class="td_header">结项内容</td>
+		
 		<td class="td_header">提交人</td>
 		<td class="td_header">提交日期</td>
 		<td class="td_header">状态</td>
@@ -52,6 +57,11 @@ function fSubmit(){
 			<td align="left" class='td_body'> <s:property  value="objectList[#st.index][1].planAmount"/></td>
 			<td align="left" class='td_body'> <s:property  value="objectList[#st.index][1].moneySource"/></td>
 			<td align="left" class='td_body'> <s:property  value="objectList[#st.index][1].bidType"/></td>
+
+			<td align="left" class='td_body'> <s:property  value="objectList[#st.index][0].recommendBidderTXT"/></td>
+			<td align="left" class='td_body'> <s:property  value="objectList[#st.index][2].zhongbiaoCompany"/></td>
+			<td align="left" class='td_body'> <s:property  value="objectList[#st.index][2].finishItemDate"/></td>
+			<td align="left" class='td_body'> <s:property  value="objectList[#st.index][2].finishSummary"/></td>
 
 			<td align="left" class='td_body'> <s:property  value="objectList[#st.index][0].requesterName"/></td>
 			<td align="left" class='td_body'> <s:property  value="objectList[#st.index][0].applyDate"/></td>

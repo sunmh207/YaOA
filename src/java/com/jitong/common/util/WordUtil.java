@@ -81,7 +81,7 @@ public class WordUtil {
 			while (keys.hasNext()) {
 				oldText = (String) keys.next();
 				newValue = data.get(oldText);
-				String newText = (String) newValue;
+				String newText = StringUtil.fillNull((String) newValue);
 				targetcontent = replaceStr(targetcontent, oldText, newText);
 				/*if (keysfirst == 0) {
 					targetcontent = replaceStr(sourcecontent, oldText, newText);

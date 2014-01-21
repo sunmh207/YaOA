@@ -1,6 +1,9 @@
 package com.jitong.oa.domain;
 
 import java.sql.Blob;
+import java.util.Set;
+
+import com.jitong.workflow.domain.RecommendBidder;
 
 /**
  * 项目
@@ -86,6 +89,8 @@ public class Item {
 	private String surveyReportBodyExt;//调研报告的扩展名
 	private String surveyReportReporterId;
 	private String surveyReportReporterName;
+	
+	private Set<RecommendBidder> recommendBidderSet;
 	
 	//---------结项内容-------------------
 	/*private String finishItemName;//结项名称
@@ -237,96 +242,32 @@ public class Item {
 	}
 
 
-	/*public String getFinishItemName() {
-		return finishItemName;
+
+
+	
+	
+	public String getRecommendBidderTXT(){
+		String ret="";
+		if(recommendBidderSet!=null&&!recommendBidderSet.isEmpty()){
+			for(RecommendBidder bidder:recommendBidderSet){
+				if(ret == ""){
+					ret=bidder.getName();
+				}else{
+					ret+=","+ bidder.getName();
+				}
+			}
+		}
+		return ret;
 	}
-	public void setFinishItemName(String finishItemName) {
-		this.finishItemName = finishItemName;
+	
+	
+	
+	public Set<RecommendBidder> getRecommendBidderSet() {
+		return recommendBidderSet;
 	}
-	public String getInvestAmount() {
-		return investAmount;
+	public void setRecommendBidderSet(Set<RecommendBidder> recommendBidderSet) {
+		this.recommendBidderSet = recommendBidderSet;
 	}
-	public void setInvestAmount(String investAmount) {
-		this.investAmount = investAmount;
-	}
-	public String getBiaodiAmount() {
-		return biaodiAmount;
-	}
-	public void setBiaodiAmount(String biaodiAmount) {
-		this.biaodiAmount = biaodiAmount;
-	}
-	public String getZhongbiaoPrice() {
-		return zhongbiaoPrice;
-	}
-	public void setZhongbiaoPrice(String zhongbiaoPrice) {
-		this.zhongbiaoPrice = zhongbiaoPrice;
-	}
-	public String getZhongbiaoCompany() {
-		return zhongbiaoCompany;
-	}
-	public void setZhongbiaoCompany(String zhongbiaoCompany) {
-		this.zhongbiaoCompany = zhongbiaoCompany;
-	}
-	public String getJingbiaoDate() {
-		return jingbiaoDate;
-	}
-	public void setJingbiaoDate(String jingbiaoDate) {
-		this.jingbiaoDate = jingbiaoDate;
-	}
-	public String getBidParticipants() {
-		return bidParticipants;
-	}
-	public void setBidParticipants(String bidParticipants) {
-		this.bidParticipants = bidParticipants;
-	}
-	public String getFinishDate() {
-		return finishDate;
-	}
-	public void setFinishDate(String finishDate) {
-		this.finishDate = finishDate;
-	}
-	public String getContractSignDate() {
-		return contractSignDate;
-	}
-	public void setContractSignDate(String contractSignDate) {
-		this.contractSignDate = contractSignDate;
-	}
-	public String getSponsorDeptRespPers() {
-		return sponsorDeptRespPers;
-	}
-	public void setSponsorDeptRespPers(String sponsorDeptRespPers) {
-		this.sponsorDeptRespPers = sponsorDeptRespPers;
-	}
-	public String getJingbanPers() {
-		return jingbanPers;
-	}
-	public void setJingbanPers(String jingbanPers) {
-		this.jingbanPers = jingbanPers;
-	}
-	public String getFinishSummary() {
-		return finishSummary;
-	}
-	public void setFinishSummary(String finishSummary) {
-		this.finishSummary = finishSummary;
-	}
-	public String getLeadComments() {
-		return leadComments;
-	}
-	public void setLeadComments(String leadComments) {
-		this.leadComments = leadComments;
-	}
-	public String getJjwComments() {
-		return jjwComments;
-	}
-	public void setJjwComments(String jjwComments) {
-		this.jjwComments = jjwComments;
-	}
-	public String getFinishNote() {
-		return finishNote;
-	}
-	public void setFinishNote(String finishNote) {
-		this.finishNote = finishNote;
-	}*/
 	public static String status2Txt(String st){
 		if(STATUS_1_NEW.equals(st)){
 			return "1.新申请";

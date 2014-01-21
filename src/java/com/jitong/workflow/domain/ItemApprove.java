@@ -56,11 +56,11 @@ public class ItemApprove {
 	}
 	public String getStatusTXT() {
 		if(STATUS_PENDING.equals(status)){
-			return "待审批";
+			return "等待...";
 		}else if(STATUS_APPROVED.equals(status)){
-			return "审批通过";
+			return "通过";
 		}else if(STATUS_REJECTED.equals(status)){
-			return "审批未通过";
+			return "未通过";
 		}else{
 			return status;
 		}

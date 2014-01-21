@@ -25,10 +25,16 @@ function forsubmit() {
 <s:hidden name="itemApprove.id" value="%{itemApprove.id}" />
 <table width="100%" class="table" cellpadding="0" cellspacing="0" align="center">
     
-    <tr>
+   <tr>
         <td height="24" align="right" class="td_lable">结项名称</td>
-        <td class="td_edit">		
+        <td class="td_edit" colspan="3">		
 			<s:property value="%{itemFinish.finishItemName}"/> 	 
+        </td>        
+    </tr>
+    <tr>
+        <td height="24" align="right" class="td_lable">结项日期</td>
+        <td class="td_edit">		
+			<s:property value="%{itemFinish.finishItemDate}"/> 	 
         </td>
         <td height="24" align="right" class="td_lable">投资金额</td>
         <td class="td_edit">		

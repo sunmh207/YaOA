@@ -113,7 +113,9 @@ public class ExportWordAction extends JITActionBase implements Preparable {
 		dataMap.put("jingbanPers", itemFinish.getJingbanPers());
 		dataMap.put("finishSummary", itemFinish.getFinishSummary());
 		dataMap.put("leadComments", itemFinish.getLeadComments());
+		dataMap.put("lead", itemFinish.getLead());
 		dataMap.put("jjwComments", itemFinish.getJjwComments());
+		dataMap.put("jjw", itemFinish.getJjw());
 		dataMap.put("finishNote", itemFinish.getFinishNote());
 		
 		session.put("dataMap", dataMap);
@@ -153,6 +155,15 @@ public class ExportWordAction extends JITActionBase implements Preparable {
 		
 		dataMap.put("bid.planAmount",bid.getPlanAmount());
 
+		String itemType=item.getItemType();
+		if("物资管理".equals(itemType)){
+			dataMap.put("type", "物资（设备）采购");
+		}else{
+			dataMap.put("type", "建设工程项目");
+		}
+		
+		String itemName = item.getItemName();
+		dataMap.put("itemName", itemName);
 		
 		session.put("dataMap", dataMap);
 		session.put("template", "file"+File.separator + "supervision_template.mht");

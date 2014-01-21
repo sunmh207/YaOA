@@ -14,6 +14,7 @@ public class ItemFinish {
 	private String id;
 	private Item item;
 	private String finishItemName;//结项名称
+	private String finishItemDate;//结项日期
 	private String investAmount;//投资金额
 	private String biaodiAmount;//标底
 	private String zhongbiaoPrice;//中标价;
@@ -26,7 +27,11 @@ public class ItemFinish {
 	private String jingbanPers;//经办人
 	private String finishSummary;//结项主要内容
 	private String leadComments;//主管领导意见
+	private String lead;//主管领导,审批人
+	
 	private String jjwComments;//纪检委意见
+	private String jjw;//纪检委领导
+	
 	private String finishNote;//结项备注
 	private String status;
 	
@@ -53,6 +58,13 @@ public class ItemFinish {
 	}
 	public void setFinishItemName(String finishItemName) {
 		this.finishItemName = finishItemName;
+	}
+	
+	public String getFinishItemDate() {
+		return finishItemDate;
+	}
+	public void setFinishItemDate(String finishItemDate) {
+		this.finishItemDate = finishItemDate;
 	}
 	public String getInvestAmount() {
 		return investAmount;
@@ -161,6 +173,19 @@ public class ItemFinish {
 	}
 	public void setPayAmount(String payAmount) {
 		this.payAmount = payAmount;
+	}
+	
+	public String getLead() {
+		return lead;
+	}
+	public void setLead(String lead) {
+		this.lead = lead;
+	}
+	public String getJjw() {
+		return jjw;
+	}
+	public void setJjw(String jjw) {
+		this.jjw = jjw;
 	}
 	
 	public String getStatusTXT(){

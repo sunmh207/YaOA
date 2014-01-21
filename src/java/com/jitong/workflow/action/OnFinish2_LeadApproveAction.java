@@ -5,6 +5,7 @@ import java.util.List;
 import com.jitong.common.action.JITActionBase;
 import com.jitong.common.exception.JTException;
 import com.jitong.common.util.DateUtil;
+import com.jitong.common.util.StringUtil;
 import com.jitong.console.domain.User;
 import com.jitong.oa.service.ItemService;
 import com.jitong.workflow.domain.ItemApprove;
@@ -55,6 +56,10 @@ public class OnFinish2_LeadApproveAction extends JITActionBase implements Prepar
 				return INPUT;
 			}
 			
+			if(StringUtil.isEmpty(itemFinish.getLeadComments())){
+				itemFinish.setLeadComments("同意");
+			}
+			
 			itemApprove.setApproverId(u.getId());
 			itemApprove.setApproverName(u.getName());
 			itemApprove.setItemId(itemFinish.getId());
@@ -69,6 +74,7 @@ public class OnFinish2_LeadApproveAction extends JITActionBase implements Prepar
 			
 			if(cnt==0){//多个审批都通过才算审批通过
 				itemFinish.setStatus(ItemFinish.STATUS_11_ON_FINISH_LEAD_APPROVED);
+				itemFinish.setLead(u.getName());
 				service.updateBo(itemFinish);
 			}
 			
@@ -87,7 +93,12 @@ public class OnFinish2_LeadApproveAction extends JITActionBase implements Prepar
 				this.addActionError("当前用户会话过期");
 				return INPUT;
 			}
+			if(StringUtil.isEmpty(itemFinish.getLeadComments())){
+				itemFinish.setLeadComments("不同意");
+			}
+			
 			itemFinish.setStatus(ItemFinish.STATUS_11_ON_FINISH_LEAD_REJECT);
+			itemFinish.setLead(u.getName());
 			service.updateBo(itemFinish);
 			itemApprove.setApproverId(u.getId());
 			itemApprove.setApproverName(u.getName());

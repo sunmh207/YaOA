@@ -153,6 +153,7 @@
 		</id>
 		<many-to-one name="item" column="item_id" />  
 		<property name="finishItemName" column="finish_Item_Name" />
+		<property name="finishItemDate" column="finish_Item_Date" />
 		<property name="investAmount" column="invest_Amount" />
 		<property name="biaodiAmount" column="biaodi_Amount" />
 		<property name="zhongbiaoPrice" column="zhongbiao_Price" />
@@ -165,7 +166,9 @@
 		<property name="jingbanPers" column="jingban_Pers" />
 		<property name="finishSummary" column="finish_Summary" />
 		<property name="leadComments" column="lead_Comments" />
+		<property name="lead" column="lead" />
 		<property name="jjwComments" column="jjw_Comments" />
+		<property name="jjw" column="jjw" />
 		<property name="finishNote" column="finish_Note" />
 		<property name="status" column="status" />
 		

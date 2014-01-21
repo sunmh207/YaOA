@@ -84,7 +84,7 @@ function finishBid() {
         <td class="td_edit" colspan="3">	
         	<s:iterator value="recommendBidderList" status="st">
         	<s:property value='#st.index+1'/>.<s:property value="name"/>
-        	<a  href="${root}/workflow/onbid6!recommendBidderInput.do?item.id=<s:property value="item.id"/>&recommendBidder.id=<s:property value="id"/>">编辑</a>
+        	<%-- <a  href="${root}/workflow/onbid6!recommendBidderInput.do?item.id=<s:property value="item.id"/>&recommendBidder.id=<s:property value="id"/>">编辑</a> --%>
         		<a href="${root}/oa/download!downloadRecommendBidderDoc.do?recommendBidder.id=<s:property value="id"/>">下载附件</a>&nbsp;
         		
         	</s:iterator> 

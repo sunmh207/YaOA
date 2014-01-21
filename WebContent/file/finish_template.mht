@@ -1962,42 +1962,23 @@ t-family:
 wtext .75pt;
   mso-border-alt:solid windowtext .75pt;padding:0cm 5.4pt 0cm 5.4pt;height:
   68.25pt'>
-  <p class=3DMsoNormal style=3D'text-indent:123.85pt;mso-char-indent-count:=
-10.32;
-  line-height:20.0pt;mso-line-height-rule:exactly;mso-element:frame;mso-ele=
-ment-frame-hspace:
-  9.0pt;mso-element-wrap:around;mso-element-anchor-vertical:paragraph;
-  mso-element-anchor-horizontal:margin;mso-element-top:21.5pt;mso-height-ru=
-le:
-  exactly'><span class=3DSpellE><span lang=3DEN-US style=3D'font-size:12.0p=
-t;
-  mso-bidi-font-size:11.0pt;font-family:仿宋_GB2312;mso-fareast-font-family=
-:宋体;
-  mso-hansi-font-family:宋体'>$leadComments$</span></span><span lang=3DEN-US
+  <p class=3DMsoNormal style=3D'margin-left:264.35pt;mso-para-margin-left:1=
+0.32gd;
+  text-indent:-156.0pt;mso-char-indent-count:-13.0;line-height:20.0pt;
+  mso-line-height-rule:exactly;mso-element:frame;mso-element-frame-hspace:9=
+.0pt;
+  mso-element-wrap:around;mso-element-anchor-vertical:paragraph;mso-element=
+-anchor-horizontal:
+  margin;mso-element-top:21.5pt;mso-height-rule:exactly'><span lang=3DEN-US
   style=3D'font-size:12.0pt;mso-bidi-font-size:11.0pt;font-family:仿宋_GB23=
 12;
-  mso-fareast-font-family:宋体;mso-hansi-font-family:宋体'> <span
-  style=3D'mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>=
-<o:p></o:p></span></p>
-  <p class=3DMsoNormal style=3D'text-indent:129.85pt;mso-char-indent-count:=
-10.82;
-  line-height:20.0pt;mso-line-height-rule:exactly;mso-element:frame;mso-ele=
-ment-frame-hspace:
-  9.0pt;mso-element-wrap:around;mso-element-anchor-vertical:paragraph;
-  mso-element-anchor-horizontal:margin;mso-element-top:21.5pt;mso-height-ru=
-le:
-  exactly'><span style=3D'font-size:12.0pt;mso-bidi-font-size:11.0pt;font-f=
-amily:
-  宋体;mso-ascii-font-family:仿宋_GB2312'>（盖延安机务段印章）</span><span =
-lang=3DEN-US
-  style=3D'font-size:12.0pt;mso-bidi-font-size:11.0pt;font-family:仿宋_GB23=
-12;
-  mso-fareast-font-family:宋体;mso-hansi-font-family:宋体'><o:p></o:p></spa=
-n></p>
+  mso-fareast-font-family:宋体;mso-hansi-font-family:宋体'>$leadComments$ <br>
+  $lead$<o:p></o:p></span></p>
   </td>
  </tr>
- <tr style=3D'mso-yfti-irow:8;height:22.35pt'>
+ 
+ 
+ <tr style=3D'mso-yfti-irow:8;height:22.35pt'>  
   <td width=3D182 style=3D'width:109.45pt;border:solid windowtext 1.0pt;bor=
 der-top:
   none;mso-border-top-alt:solid windowtext .75pt;mso-border-alt:solid windo=
@@ -2103,15 +2084,10 @@ ment-frame-hspace:
   9.0pt;mso-element-wrap:around;mso-element-anchor-vertical:paragraph;
   mso-element-anchor-horizontal:margin;mso-element-top:21.5pt;mso-height-ru=
 le:
-  exactly'><span class=3DSpellE><span lang=3DEN-US style=3D'font-size:12.0p=
-t;
-  mso-bidi-font-size:11.0pt;font-family:仿宋_GB2312;mso-fareast-font-family=
-:宋体;
-  mso-hansi-font-family:宋体'>$jjwComments$</span></span><span lang=3DEN-US
-  style=3D'font-size:12.0pt;mso-bidi-font-size:11.0pt;font-family:仿宋_GB23=
-12;
-  mso-fareast-font-family:宋体;mso-hansi-font-family:宋体'><o:p></o:p></spa=
-n></p>
+  exactly'><span lang=3DEN-US style=3D'font-size:12.0pt;mso-bidi-font-size:=
+11.0pt;
+  font-family:仿宋_GB2312;mso-fareast-font-family:宋体;mso-hansi-font-famil=
+y:宋体'>$jjwComments$<o:p></o:p></span></p>
   <p class=3DMsoNormal style=3D'text-indent:123.85pt;mso-char-indent-count:=
 10.32;
   line-height:20.0pt;mso-line-height-rule:exactly;mso-element:frame;mso-ele=
@@ -2124,16 +2100,15 @@ le:
   font-family:仿宋_GB2312;mso-fareast-font-family:宋体;mso-hansi-font-famil=
 y:宋体'><span
   style=3D'mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-  </span></span><span style=3D'font-size:12.0pt;mso-bidi-font-size:11.0pt;
-  font-family:宋体;mso-ascii-font-family:仿宋_GB2312'>（盖纪委章）</span><s=
-pan
-  lang=3DEN-US style=3D'font-size:12.0pt;mso-bidi-font-size:11.0pt;font-fam=
-ily:
-  仿宋_GB2312;mso-fareast-font-family:宋体;mso-hansi-font-family:宋体'><o:p=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  </span><span style=3D'mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;</span><span
+  style=3D'mso-spacerun:yes'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>$jjw$<o:p=
 ></o:p></span></p>
   </td>
  </tr>
+ 
+ 
+ 
  <tr style=3D'mso-yfti-irow:9;mso-yfti-lastrow:yes;height:47.55pt'>
   <td width=3D182 style=3D'width:109.45pt;border:solid windowtext 1.0pt;bor=
 der-top:

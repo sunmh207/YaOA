@@ -75,8 +75,15 @@
         <td colspan="3" class="td_edit">
         <s:iterator value="mktSignApproveList" status="st">
 				[<s:property value='#st.index+1'/>.<s:property value="operationTime"/>] 
-				审批人:<s:property  value="approverName"/> &nbsp;&nbsp;
-				审批结果:<s:property  value="statusTXT"/>&nbsp;&nbsp; 
+				签收人:<s:property  value="approverName"/> &nbsp;&nbsp;
+				签收状态:<%-- <s:property  value="statusTXT"/>&nbsp;&nbsp; --%> 
+				<s:if test="status == \"PENDING\" ">
+					待签收
+				</s:if>
+				<s:if test="status == \"APPROVED\" ">
+					已签收
+				</s:if>
+				&nbsp;&nbsp;
 				意见:<s:property  value="comments"/> <br>
         </s:iterator>
         </td>
@@ -90,8 +97,15 @@
         <td colspan="3" class="td_edit">
         <s:iterator value="mktConfirmApproveList" status="st">
 				[<s:property value='#st.index+1'/>.<s:property value="operationTime"/>] 
-				审批人:<s:property  value="approverName"/> &nbsp;&nbsp;
-				审批结果:<s:property  value="statusTXT"/>&nbsp;&nbsp; 
+				确认人:<s:property  value="approverName"/> &nbsp;&nbsp;
+				确认状态:<%-- <s:property  value="statusTXT"/>&nbsp;&nbsp; --%> 
+				<s:if test="status == \"PENDING\" ">
+					待确认
+				</s:if>
+				<s:if test="status == \"APPROVED\" ">
+					已确认
+				</s:if>
+				&nbsp;&nbsp;
 				意见:<s:property  value="comments"/> <br>
         </s:iterator>
         </td>

@@ -5,6 +5,7 @@ import java.util.List;
 import com.jitong.common.action.JITActionBase;
 import com.jitong.common.exception.JTException;
 import com.jitong.common.util.DateUtil;
+import com.jitong.common.util.StringUtil;
 import com.jitong.console.domain.User;
 import com.jitong.oa.domain.Item;
 import com.jitong.oa.service.ItemService;
@@ -51,6 +52,9 @@ public class OnFinish4_JJWApproveAction extends JITActionBase implements Prepara
 				this.addActionError("当前用户会话过期");
 				return INPUT;
 			}
+			if(StringUtil.isEmpty(itemFinish.getJjwComments())){
+				itemFinish.setJjwComments("同意");
+			}
 			
 			itemApprove.setApproverId(u.getId());
 			itemApprove.setApproverName(u.getName());
@@ -58,7 +62,7 @@ public class OnFinish4_JJWApproveAction extends JITActionBase implements Prepara
 			itemApprove.setOperationTime(DateUtil.getCurrentTime());
 			itemApprove.setType(ItemApprove.TYPE_ONFINISH_JJW_APPROVE);
 			itemApprove.setStatus(ItemApprove.STATUS_APPROVED);
-			itemApprove.setComments(itemFinish.getLeadComments());
+			itemApprove.setComments(itemFinish.getJjwComments());
 			service.updateBo(itemApprove);
 			
 			String hql="select count(*) as cnt from ItemApprove approve where approve.type='"+ItemApprove.TYPE_ONFINISH_JJW_APPROVE+"' and approve.itemId='" + itemFinish.getId() + "' and approve.status='"+ItemApprove.STATUS_PENDING+"'";
@@ -66,6 +70,7 @@ public class OnFinish4_JJWApproveAction extends JITActionBase implements Prepara
 			
 			if(cnt==0){//多个审批都通过才算审批通过
 				itemFinish.setStatus(ItemFinish.STATUS_11_ON_FINISH_JJW_APPROVED);
+				itemFinish.setJjw(u.getName());
 				service.updateBo(itemFinish);
 			}
 			
@@ -84,8 +89,14 @@ public class OnFinish4_JJWApproveAction extends JITActionBase implements Prepara
 				this.addActionError("当前用户会话过期");
 				return INPUT;
 			}
+			if(StringUtil.isEmpty(itemFinish.getJjwComments())){
+				itemFinish.setJjwComments("不同意");
+			}
+			
 			itemFinish.setStatus(ItemFinish.STATUS_11_ON_FINISH_JJW_REJECT);
+			itemFinish.setJjw(u.getName());
 			service.updateBo(itemFinish);
+			
 			itemApprove.setApproverId(u.getId());
 			itemApprove.setApproverName(u.getName());
 			itemApprove.setItemId(itemFinish.getId());
