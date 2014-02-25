@@ -89,7 +89,9 @@ public class ItemPayAction extends JITActionBase implements Preparable {
 		if (u == null) {
 			throw new JTException("用户超时", this.getClass());
 		}
-		String hql = " from Item item where item.requesterId = '" + u.getId() + "' and item.status in ('"+Item.STATUS_11_ON_FINISH+"','"+Item.STATUS_12_ON_PAY+"','"+Item.STATUS_10_ON_ACCEPT+"') ";
+		//String hql = " from Item item where item.requesterId = '" + u.getId() + "' and item.status in ('"+Item.STATUS_11_ON_FINISH+"','"+Item.STATUS_12_ON_PAY+"','"+Item.STATUS_10_ON_ACCEPT+"') ";
+		//不需要限制只有发起人才能付款。
+		String hql = " from Item item where item.status in ('"+Item.STATUS_11_ON_FINISH+"','"+Item.STATUS_12_ON_PAY+"','"+Item.STATUS_10_ON_ACCEPT+"') ";
 		return hql;
 	}
 

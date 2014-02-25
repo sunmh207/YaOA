@@ -16,8 +16,8 @@ function forSave() {
 		var dend=new Date(meetingDate.value);
 		
 		var diffday= parseInt((dend.getTime() - dstart.getTime()) / parseInt(1000 * 3600 * 24));
-			if(diffday<7){
-			alert("立项表和开标会时间必须相隔7天以上");
+			if(diffday<5){
+			alert("立项表和开标会时间必须相隔5天以上");
 			return false;
 		} 
 		
@@ -48,7 +48,7 @@ function forSave() {
     <tr>
         <td height="24" align="right" class="td_lable">日期</td>
         <td class="td_edit">		
-			<s:textfield  name="bidMeetingRecord.date" value="%{bidMeetingRecord.date}" cssClass="date"/> 	(必须在立项表<s:property value="%{bid.applyDate}" />的7天之后) 
+			<s:textfield  name="bidMeetingRecord.date" value="%{bidMeetingRecord.date}" cssClass="date"/> 	(必须在立项表<s:property value="%{bid.applyDate}" />的5天之后) 
         </td>
         <td height="24" align="right" class="td_lable">地点</td>
         <td class="td_edit">		
